@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Leon</title>
+  
+  <subtitle>You know some birds are not meant to be caged</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://wan9huan.github.io/wan9huan/"/>
+  <updated>2018-09-17T12:44:58.723Z</updated>
+  <id>https://wan9huan.github.io/wan9huan/</id>
+  
+  <author>
+    <name>W@n9</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mybatis 使用详解</title>
+    <link href="https://wan9huan.github.io/wan9huan/2018/09/17/Mybatis-%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/"/>
+    <id>https://wan9huan.github.io/wan9huan/2018/09/17/Mybatis-使用详解/</id>
+    <published>2018-09-17T12:38:38.000Z</published>
+    <updated>2018-09-17T12:44:58.723Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;MyBatis 本是apache的一个开源项目iBatis 2010年这个项目由apache software foundation 迁移到了google code，并且改名为MyBatis 。2013年11月迁移到Github。iBATIS一词来源于“internet”和“abatis”的组合，是一个基于Java的持久层框架。iBATIS提供的持久层框架包括SQL Maps和Data Access Objects（DAOs）&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://wan9huan.github.io/wan9huan/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="Mybatis" scheme="https://wan9huan.github.io/wan9huan/tags/Mybatis/"/>
+    
+      <category term="XMl配置" scheme="https://wan9huan.github.io/wan9huan/tags/XMl%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="整合框架" scheme="https://wan9huan.github.io/wan9huan/tags/%E6%95%B4%E5%90%88%E6%A1%86%E6%9E%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring 使用方法</title>
+    <link href="https://wan9huan.github.io/wan9huan/2018/09/17/Spring-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"/>
+    <id>https://wan9huan.github.io/wan9huan/2018/09/17/Spring-使用方法/</id>
+    <published>2018-09-17T07:19:41.000Z</published>
+    <updated>2018-09-17T08:42:00.647Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;Spring是一个开放源代码的设计层面框架，他解决的是业务逻辑层和其他各层的松耦合问题，因此它将面向接口的编程思想贯穿整个系统应用。轻量级非入侵式框架，简化企业级应用开发，IOC(DI)、AOP容器框架。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Spring 教程" scheme="https://wan9huan.github.io/wan9huan/categories/Spring-%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="spring" scheme="https://wan9huan.github.io/wan9huan/tags/spring/"/>
+    
+      <category term="AOP" scheme="https://wan9huan.github.io/wan9huan/tags/AOP/"/>
+    
+      <category term="IOC" scheme="https://wan9huan.github.io/wan9huan/tags/IOC/"/>
+    
+  </entry>
+  
+</feed>
