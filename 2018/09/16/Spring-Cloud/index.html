@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="spring,微服务,框架整合," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Leon" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="入门问题 微服务概念 微服务之间如何通信 SpringCloud与Dubbo的区别 SpringBoot与SpringCloud的关系 服务熔断和服务降级概念 微服务的优缺点 微服务技术栈 eureka和zookeeper的区别">
+<meta name="keywords" content="spring,微服务,框架整合">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Cloud">
+<meta property="og:url" content="https://wan9huan.github.io/2018/09/16/Spring-Cloud/index.html">
+<meta property="og:site_name" content="Leon">
+<meta property="og:description" content="入门问题 微服务概念 微服务之间如何通信 SpringCloud与Dubbo的区别 SpringBoot与SpringCloud的关系 服务熔断和服务降级概念 微服务的优缺点 微服务技术栈 eureka和zookeeper的区别">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://spring.io/img/homepage/diagram-distributed-systems.svg">
+<meta property="og:image" content="https://wan9huan.github.io/2018/09/16/Spring-Cloud/eureka.PNG">
+<meta property="og:image" content="https://wan9huan.github.io/2018/09/16/Spring-Cloud/ribbon.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1254583/201801/1254583-20180128213305022-1926741816.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1254583/201801/1254583-20180128220443600-243457834.png">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536500314999&di=6f2806c802fa85fe8ed027d79d0b4a25&imgtype=0&src=http%3A%2F%2Fblog.didispace.com%2Fassets%2F5-6.png">
+<meta property="og:updated_time" content="2018-09-18T12:55:14.421Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring Cloud">
+<meta name="twitter:description" content="入门问题 微服务概念 微服务之间如何通信 SpringCloud与Dubbo的区别 SpringBoot与SpringCloud的关系 服务熔断和服务降级概念 微服务的优缺点 微服务技术栈 eureka和zookeeper的区别">
+<meta name="twitter:image" content="https://spring.io/img/homepage/diagram-distributed-systems.svg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wan9huan.github.io/2018/09/16/Spring-Cloud/"/>
+
+
+
+
+
+  <title>Spring Cloud | Leon</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leon</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">You know some birds are not meant to be caged</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wan9huan.github.io/2018/09/16/Spring-Cloud/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="W@n9">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leon">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring Cloud</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-16T20:34:08+08:00">
+                2018-09-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring-教程/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring 教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/16/Spring-Cloud/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/09/16/Spring-Cloud/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="入门问题"><a href="#入门问题" class="headerlink" title="入门问题"></a>入门问题</h2><ol>
+<li>微服务概念</li>
+<li>微服务之间如何通信</li>
+<li>SpringCloud与Dubbo的区别</li>
+<li>SpringBoot与SpringCloud的关系</li>
+<li>服务熔断和服务降级概念</li>
+<li>微服务的优缺点</li>
+<li>微服务技术栈</li>
+<li>eureka和zookeeper的区别</li>
+</ol>
+<hr>
+<a id="more"></a>
+<p>##简介</p>
+<h3 id="微服务概述"><a href="#微服务概述" class="headerlink" title="微服务概述"></a>微服务概述</h3><p>微服务起源：<a href="https://martinfowler.com/articles/microservices.html" target="_blank" rel="noopener">微服务</a></p>
+<p>微服务将单一应用程序划分为一组小服务，每个服务独立在及自己的进程中，通过Restful方式互相沟通、调用。每个服务提供单个业务功能，去耦合。</p>
+<hr>
+<h3 id="微服务与微服务架构"><a href="#微服务与微服务架构" class="headerlink" title="微服务与微服务架构"></a>微服务与微服务架构</h3><p>微服务：指系统中的一个服务应用。</p>
+<p>微服务架构：架构风格，即包括微服务及微服务之间的通信。</p>
+<hr>
+<h3 id="微服务的优缺点"><a href="#微服务的优缺点" class="headerlink" title="微服务的优缺点"></a>微服务的优缺点</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ol>
+<li>服务高内聚，完成一个细微化的业务或功能</li>
+<li>单个服务的开发更便捷，开发简单、开发效率高 </li>
+<li>微服务可由独立团队开发</li>
+<li>松耦合，开发及部署都独立</li>
+<li>可以由不同语言开发，易于集成</li>
+<li>前后端分离、灵活分配数据库</li>
+</ol>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ol>
+<li>分布式系统的复杂性</li>
+<li>运维难度增加，系统部署依赖问题</li>
+<li>服务间通信额外花费</li>
+<li>数据一致性、系统集成测试难度</li>
+<li>性能监控难</li>
+</ol>
+<hr>
+<h3 id="微服务技术栈"><a href="#微服务技术栈" class="headerlink" title="微服务技术栈"></a>微服务技术栈</h3><table>
+<thead>
+<tr>
+<th>微服务</th>
+<th style="text-align:center">技术</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开发</td>
+<td style="text-align:center">Spring、SpringBoot、SpringMVC</td>
+</tr>
+<tr>
+<td>配置管理</td>
+<td style="text-align:center">Archaius（Netflix）、Diamond（Ali）</td>
+</tr>
+<tr>
+<td>注册与实现</td>
+<td style="text-align:center">Eureka、Consul、Zookeeper</td>
+</tr>
+<tr>
+<td>调用</td>
+<td style="text-align:center">Rest、RPC、gRPC</td>
+</tr>
+<tr>
+<td>熔断器</td>
+<td style="text-align:center">Hystrix、Envoy</td>
+</tr>
+<tr>
+<td>负载均衡</td>
+<td style="text-align:center">Ribbon、Nginx</td>
+</tr>
+<tr>
+<td>接口调用工具</td>
+<td style="text-align:center">Feign</td>
+</tr>
+<tr>
+<td>消息队列</td>
+<td style="text-align:center">Kaflka、RabbitMQ、ActiveMQ</td>
+</tr>
+<tr>
+<td>配置中心管理</td>
+<td style="text-align:center">SpringCloudConfig、Chef</td>
+</tr>
+<tr>
+<td>路由(API网关)</td>
+<td style="text-align:center">Zuul</td>
+</tr>
+<tr>
+<td>监控</td>
+<td style="text-align:center">Zabbix、Nagios、Metrics、Spectator</td>
+</tr>
+<tr>
+<td>全链路追踪</td>
+<td style="text-align:center">ZipKin、Brave、Dapper</td>
+</tr>
+<tr>
+<td>部署</td>
+<td style="text-align:center">Docker、OpenStack、Kubernates</td>
+</tr>
+<tr>
+<td>数据流操作</td>
+<td style="text-align:center">SpringCloud Steam（Redis、Rabbit…）</td>
+</tr>
+<tr>
+<td>事件消息总线</td>
+<td style="text-align:center">Spring Cloud Bus</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="SpringCloud-架构"><a href="#SpringCloud-架构" class="headerlink" title="SpringCloud 架构"></a>SpringCloud 架构</h2><h3 id="主流选用"><a href="#主流选用" class="headerlink" title="主流选用"></a>主流选用</h3><table>
+<thead>
+<tr>
+<th>厂商</th>
+<th>技术选用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>阿里</td>
+<td>Dubbo/HSF</td>
+</tr>
+<tr>
+<td>京东</td>
+<td>JSF</td>
+</tr>
+<tr>
+<td>新浪微博</td>
+<td>Motan</td>
+</tr>
+<tr>
+<td>当当</td>
+<td>Dubbo</td>
+</tr>
+</tbody>
+</table>
+<h3 id="框架对比"><a href="#框架对比" class="headerlink" title="框架对比"></a>框架对比</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">功能</th>
+<th style="text-align:center">Spring Cloud</th>
+<th style="text-align:center">Motan</th>
+<th style="text-align:center">gRPC</th>
+<th style="text-align:center">Thrift</th>
+<th style="text-align:center">Dubbo/DubboX</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">定位</td>
+<td style="text-align:center">完整微服务</td>
+<td style="text-align:center">RPC+ZK/Consul</td>
+<td style="text-align:center">RPC</td>
+<td style="text-align:center">RPC</td>
+<td style="text-align:center">RPC</td>
+</tr>
+<tr>
+<td style="text-align:left">Rest</td>
+<td style="text-align:center">支持</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">否</td>
+</tr>
+<tr>
+<td style="text-align:left">RPC</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:left">多语言</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">否</td>
+</tr>
+<tr>
+<td style="text-align:left">注册/发现</td>
+<td style="text-align:center">（Eurka）</td>
+<td style="text-align:center">Zookeeper/Consul</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:left">负载均衡</td>
+<td style="text-align:center">Zuul+Ribbon</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:left">配置服务</td>
+<td style="text-align:center">Archaius/sp config servier</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">调用链监控</td>
+<td style="text-align:center">Zuul API</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">高可用/容错</td>
+<td style="text-align:center">Hystrix Ribbon</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">其他</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="SpringCloud简介"><a href="#SpringCloud简介" class="headerlink" title="SpringCloud简介"></a>SpringCloud简介</h3><p><img src="https://spring.io/img/homepage/diagram-distributed-systems.svg" alt="微服务"></p>
+<p>SpringCloud微服务架构，涵盖了服务注册/发现、配置中心、全链路监控、服务网管、负载均衡、熔断器等，使用SpringBooot简化开发，提供快速构建分布式系统的工具，包括配置管理、服务发现、断路器、路由、微代理、事件总线、全局锁、决策精选、分布式会话等，都可以使用SpringBoot开发进行快速启动和部署。</p>
+<p><em>SpringCloud：一站式分布式微服务解决方案</em></p>
+<hr>
+<h3 id="Dubbo-对比-SpringCloud"><a href="#Dubbo-对比-SpringCloud" class="headerlink" title="Dubbo 对比 SpringCloud"></a>Dubbo 对比 SpringCloud</h3><table>
+<thead>
+<tr>
+<th>对比</th>
+<th>Dubbo</th>
+<th>SpringCloud</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>注册中心</td>
+<td>Zookeeper</td>
+<td>Eureka</td>
+</tr>
+<tr>
+<td>调用方式</td>
+<td>RPC</td>
+<td>REST API</td>
+</tr>
+<tr>
+<td>监控</td>
+<td>Dubbo-minitor</td>
+<td>spring boot admin</td>
+</tr>
+<tr>
+<td>断路器</td>
+<td>不完善</td>
+<td>SC Netfilx Hystrix</td>
+</tr>
+<tr>
+<td>网管</td>
+<td>无</td>
+<td>SC Netfilx Zull</td>
+</tr>
+<tr>
+<td>分布式配置</td>
+<td>无</td>
+<td>SC config</td>
+</tr>
+<tr>
+<td>跟踪</td>
+<td>无</td>
+<td>SC Sleuth</td>
+</tr>
+<tr>
+<td>消息总线</td>
+<td>无</td>
+<td>SC Bus</td>
+</tr>
+<tr>
+<td>数据流</td>
+<td>无</td>
+<td>SC Stream</td>
+</tr>
+<tr>
+<td>批量任务</td>
+<td>无</td>
+<td>SC Task</td>
+</tr>
+<tr>
+<td>…</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h3><p><a href="https://springcloud.cc/spring-cloud-netflix.html" target="_blank" rel="noopener">官方文档</a>      <a href="http://springcloud.cc/spring-cloud-dalston.html" target="_blank" rel="noopener">API 文档</a>   <a href="http://www.springcloud.cn/" target="_blank" rel="noopener">中国社区</a>    <a href="https://springcloud.cc/" target="_blank" rel="noopener">Spring中文网</a></p>
+<hr>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h3><ol>
+<li>Cloud:    Dalston.SR1</li>
+<li>Boot:      1.5.9</li>
+</ol>
+<h3 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h3><p>创建父工程Maven配置打包类型为Pom</p>
+<p>在父工程中创建子工程模块</p>
+<p>创建子工程</p>
+<hr>
+<h3 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h3><p><img src="/2018/09/16/Spring-Cloud/eureka.PNG" alt="Eurka"></p>
+<p>服务注册与发现，注册订阅后可以依据服务标识符访问服务，不需要修改配置文件，功能和Zookeeper类似，遵循AP原则。</p>
+<table>
+<thead>
+<tr>
+<th>功能对比</th>
+<th>Eurka</th>
+<th>Zookeeper</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>架构</td>
+<td>CS架构 Server端注册服务器</td>
+<td>RPC</td>
+</tr>
+<tr>
+<td>稳定性</td>
+<td>冗余备份，所有集群均可独立工作</td>
+<td>主从备份，选举费时</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="Eureka简介"><a href="#Eureka简介" class="headerlink" title="Eureka简介"></a>Eureka简介</h4><p>服务端：提供服务注册服务，存储所有可用服务节点的信息。</p>
+<p>客户端：Java客户端，简化同服务端的交互，包含负载均衡器，启动后会向服务端周期发送心跳（默认30s），当服务器在多个周期中未受到某节点心跳（默认90s），节点将会移除。</p>
+<h4 id="注册中心"><a href="#注册中心" class="headerlink" title="注册中心"></a>注册中心</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 7001</span><br><span class="line"></span><br><span class="line">eureka:</span><br><span class="line">  instance:</span><br><span class="line">    hostname: localhost</span><br><span class="line">  client:</span><br><span class="line">    register-with-eureka: false   #不注册自身</span><br><span class="line">    fetch-registry: false         #服务端</span><br><span class="line">    service-url:</span><br><span class="line">      defalutZone: http://$&#123;eureka.instance.hostname&#125;:$&#123;s</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EurekaServer7001_App</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        SpringApplication.run(EurekaServer7001_App.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="服务提供者"><a href="#服务提供者" class="headerlink" title="服务提供者"></a>服务提供者</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">eureka:</span><br><span class="line">  client: #客户端注册进eureka服务列表内</span><br><span class="line">    service-url:</span><br><span class="line">      defaultZone: http://localhost:7001/eureka</span><br><span class="line">      #defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/</span><br><span class="line">  instance:</span><br><span class="line">    instance-id: microservicecloud-dept-8001</span><br><span class="line">    prefer-ip-address: true     #访问路径可以显示IP地址</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableEurekaClient</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeptProvider8001_App</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(DeptProvider8001_App.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="服务消费者"><a href="#服务消费者" class="headerlink" title="服务消费者"></a>服务消费者</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 80</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConfigBean</span></span></span><br><span class="line"><span class="class"></span>&#123; </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@LoadBalanced</span><span class="comment">//Spring Cloud Ribbon 负载均衡的工具。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RestTemplate <span class="title">getRestTemplate</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String REST_URL_PREFIX = <span class="string">"http://localhost:8001"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//private static final String REST_URL_PREFIX = "http://MICROSERVICECLOUD-DEPT";</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/consumer/dept/add"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(Dept dept)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> restTemplate.postForObject(REST_URL_PREFIX + <span class="string">"/dept/add"</span>, dept, Boolean.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/consumer/dept/get/&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Dept <span class="title">get</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Long id)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> restTemplate.getForObject(REST_URL_PREFIX + <span class="string">"/dept/get/"</span> + id, Dept.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/consumer/dept/list"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Dept&gt; <span class="title">list</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> restTemplate.getForObject(REST_URL_PREFIX + <span class="string">"/dept/list"</span>, List.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 测试@EnableDiscoveryClient,消费端可以调用服务发现</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/consumer/dept/discovery"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">discovery</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> restTemplate.getForObject(REST_URL_PREFIX + <span class="string">"/dept/discovery"</span>, Object.class);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><h4 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h4><p>客户端负载均衡工具</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-eureka<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-ribbon<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConfigBean</span></span></span><br><span class="line"><span class="class"></span>&#123; </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@LoadBalanced</span><span class="comment">//Spring Cloud Ribbon 负载均衡的工具。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RestTemplate <span class="title">getRestTemplate</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> IRule <span class="title">myRule</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//return new RoundRobinRule();</span></span><br><span class="line">    <span class="comment">//return new RandomRule();//达到的目的，用我们重新选择的随机算法替代默认的轮询。</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> RetryRule();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><ol>
+<li><p>RoundRobinRule    </p>
+<p>轮询</p>
+</li>
+<li><p>RandomRule</p>
+<p>随机</p>
+</li>
+<li><p>AvaliabilityFilteringRule</p>
+<p>过滤访问导致故障处于断路器跳闸的服务、超并发阈值服务，剩余轮询</p>
+</li>
+<li><p>WeightedResponseTimeRule</p>
+<p>根据平均响应时间分配权重，权重大的被选中几率大，服务启动使用轮询，后切换为WeightedResponseTimeRule。</p>
+</li>
+<li><p>RetryRule</p>
+<p>按照轮询获取服务，失败时，在指定时间内重试。</p>
+</li>
+<li><p>BestAvaliableRule</p>
+<p>过滤故障跳闸服务，选择并发量小的服务。</p>
+</li>
+<li><p>ZoneAvoidanceRule</p>
+<p>默认规则，复合判断服务性能和选择可用服务。</p>
+</li>
+</ol>
+<h4 id="自定义负载均衡策略"><a href="#自定义负载均衡策略" class="headerlink" title="自定义负载均衡策略"></a>自定义负载均衡策略</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.wang.myrule.MySelfRule;</span><br><span class="line"><span class="comment">/////////////////</span></span><br><span class="line"><span class="meta">@RibbonClient</span>（name=<span class="string">"microservicecloud-dept"</span>,configration=MySelfRule.class)</span><br><span class="line"><span class="comment">/////////////////</span></span><br><span class="line"><span class="meta">@EnableEurekaClient</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerDept80</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(ConsumerDept80.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自动配置类 不能载SpringBoot的自动扫描范围</span></span><br><span class="line"><span class="comment">//如果被扫描 所有的客户端将共享这个配置</span></span><br><span class="line"><span class="keyword">package</span> com.wang.myrule;<span class="comment">//与主配置并列包</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.netflix.loadbalancer.IRule;</span><br><span class="line"><span class="keyword">import</span> com.netflix.loadbalancer.RoundRobinRule;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MySelfRule</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> IRule <span class="title">myRule</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="comment">//return new RandomRule();// Ribbon默认是轮询，我自定义为随机</span></span><br><span class="line">		<span class="comment">//return new RoundRobinRule();// Ribbon默认是轮询，我自定义为随机</span></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> RandomRule_ZY();<span class="comment">// 我自定义为每台机器5次</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="自定义规则编写"><a href="#自定义规则编写" class="headerlink" title="自定义规则编写"></a>自定义规则编写</h4><p>在自定义策略类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.myrule;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.netflix.client.config.IClientConfig;</span><br><span class="line"><span class="keyword">import</span> com.netflix.loadbalancer.AbstractLoadBalancerRule;</span><br><span class="line"><span class="keyword">import</span> com.netflix.loadbalancer.ILoadBalancer;</span><br><span class="line"><span class="keyword">import</span> com.netflix.loadbalancer.Server;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RandomRuleUserDefined</span> <span class="keyword">extends</span> <span class="title">AbstractLoadBalancerRule</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// total = 0 // 当total==5以后，我们指针才能往下走，</span></span><br><span class="line">	<span class="comment">// index = 0 // 当前对外提供服务的服务器地址，</span></span><br><span class="line">	<span class="comment">// total需要重新置为零，但是已经达到过一个5次，我们的index = 1</span></span><br><span class="line">	<span class="comment">// 分析：我们5次，但是微服务只有8001 8002 8003 三台，OK？</span></span><br><span class="line">	<span class="comment">// </span></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> total = <span class="number">0</span>; 			<span class="comment">// 总共被调用的次数，目前要求每台被调用5次</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> currentIndex = <span class="number">0</span>;	<span class="comment">// 当前提供服务的机器号</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Server <span class="title">choose</span><span class="params">(ILoadBalancer lb, Object key)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (lb == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		Server server = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span> (server == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (Thread.interrupted()) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			List&lt;Server&gt; upList = lb.getReachableServers();</span><br><span class="line">			List&lt;Server&gt; allList = lb.getAllServers();</span><br><span class="line"></span><br><span class="line">			<span class="keyword">int</span> serverCount = allList.size();</span><br><span class="line">			<span class="keyword">if</span> (serverCount == <span class="number">0</span>) &#123;</span><br><span class="line">	 <span class="comment">/*</span></span><br><span class="line"><span class="comment">		* No servers. End regardless of pass, because subsequent passes only get more</span></span><br><span class="line"><span class="comment">	  * restrictive.</span></span><br><span class="line"><span class="comment">	  */</span></span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//			int index = rand.nextInt(serverCount);// java.util.Random().nextInt(3);</span></span><br><span class="line"><span class="comment">//			server = upList.get(index);</span></span><br><span class="line"></span><br><span class="line">			</span><br><span class="line"><span class="comment">//			private int total = 0; 			// 总共被调用的次数，目前要求每台被调用5次</span></span><br><span class="line"><span class="comment">//			private int currentIndex = 0;	// 当前提供服务的机器号</span></span><br><span class="line">            <span class="keyword">if</span>(total &lt; <span class="number">5</span>)</span><br><span class="line">            &#123;</span><br><span class="line">	            server = upList.get(currentIndex);</span><br><span class="line">	            total++;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">	            total = <span class="number">0</span>;</span><br><span class="line">	            currentIndex++;</span><br><span class="line">	            <span class="keyword">if</span>(currentIndex &gt;= upList.size())</span><br><span class="line">	            &#123;</span><br><span class="line">	              currentIndex = <span class="number">0</span>;</span><br><span class="line">	            &#125;</span><br><span class="line">            &#125;			</span><br><span class="line">			</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span> (server == <span class="keyword">null</span>) &#123;</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * The only time this should happen is if the server list were somehow trimmed.</span></span><br><span class="line"><span class="comment">		 * This is a transient condition. Retry after yielding.</span></span><br><span class="line"><span class="comment">	   */</span></span><br><span class="line">				Thread.yield();</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (server.isAlive()) &#123;</span><br><span class="line">				<span class="keyword">return</span> (server);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="comment">// Shouldn't actually happen.. but must be transient or a bug.</span></span><br><span class="line">			server = <span class="keyword">null</span>;</span><br><span class="line">			Thread.yield();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> server;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Server <span class="title">choose</span><span class="params">(Object key)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> choose(getLoadBalancer(), key);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initWithNiwsConfig</span><span class="params">(IClientConfig clientConfig)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="策略类继承关系"><a href="#策略类继承关系" class="headerlink" title="策略类继承关系"></a>策略类继承关系</h4><p><img src="/2018/09/16/Spring-Cloud/ribbon.png" alt="1536454563936"></p>
+<h3 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h3><p>声明式Rest客户端，使得编写Web服务客户端更简单，可以与Eurek、Rebbon组合使用。</p>
+<p>定义一个接口添加注解，即可使用。</p>
+<p>Ribbon+RestTemplate：调用</p>
+<h4 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cn.springcloud.feign<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>venus-cloud-starter-feign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="接口-注解"><a href="#接口-注解" class="headerlink" title="接口+注解"></a>接口+注解</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@FeignClient(value = "MICROSERVICECLOUD-DEPT",fallbackFactory=DeptClientServiceFallbackFactory.class) //熔断器类</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@FeignClient</span>(value = <span class="string">"MICROSERVICECLOUD-DEPT"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">DeptClientService</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="meta">@RequestMapping</span>(value = <span class="string">"/dept/get/&#123;id&#125;"</span>, method = RequestMethod.GET)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Dept <span class="title">get</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> <span class="keyword">long</span> id)</span>;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@RequestMapping</span>(value = <span class="string">"/dept/list"</span>, method = RequestMethod.GET)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;Dept&gt; <span class="title">list</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@RequestMapping</span>(value = <span class="string">"/dept/add"</span>, method = RequestMethod.POST)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(Dept dept)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeptController_Consumer</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> DeptClientService service;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@RequestMapping</span>(value = <span class="string">"/consumer/dept/get/&#123;id&#125;"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Dept <span class="title">get</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Long id)</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.service.get(id);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@RequestMapping</span>(value = <span class="string">"/consumer/dept/list"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;Dept&gt; <span class="title">list</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.service.list();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@RequestMapping</span>(value = <span class="string">"/consumer/dept/add"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">add</span><span class="params">(Dept dept)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.service.add(dept);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>集成了Rabbon，Ribbon+RestTemplate调用微服务 ==》接口+注解,调用接口的方式调用服务，即是在调用某个微服务的方式从使用RestTemplate的方式转为使用接口方式调用，Fegin还是可以使用Rabbon的负载均衡。</p>
+<hr>
+<h3 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h3><p>处理分布式系统的延迟和容错的开源库，分布式系统中，服务调用不可避免会有调用失败、超时、异常出现，Hystrix保证在服务出现为题时，不会导致整体服务失败，避免级联故障，提高分布式系统的弹性。当某个服务出现故障，通关断路器的故障监控，向调用方法返回一个符合预期的、可处理的备选响应，而不是进行等待或抛出异常，保证调用线程不会长时间等待、返回无用信息，避免故障蔓延。</p>
+<h4 id="依赖-1"><a href="#依赖-1" class="headerlink" title="依赖"></a>依赖</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="启用"><a href="#启用" class="headerlink" title="启用"></a>启用</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaClient</span> </span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span> </span><br><span class="line"></span><br><span class="line"><span class="meta">@EnableCircuitBreaker</span>		<span class="comment">//对hystrix熔断机制的支持</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeptProviderHystrix</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		SpringApplication.run(DeptProviderHystrixp.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Controller-1"><a href="#Controller-1" class="headerlink" title="Controller"></a>Controller</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeptController</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> DeptService service = <span class="keyword">null</span>;</span><br><span class="line">	<span class="comment">//调用服务方法失败并抛出了错误信息</span></span><br><span class="line">  <span class="comment">//自动调用@HystrixCommand标注好的fallbackMethod调用类中的指定方法</span></span><br><span class="line">	<span class="meta">@HystrixCommand</span>(fallbackMethod = <span class="string">"processHystrix_Get"</span>)</span><br><span class="line">  <span class="meta">@RequestMapping</span>(value = <span class="string">"/dept/get/&#123;id&#125;"</span>, method = RequestMethod.GET)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Dept <span class="title">get</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Long id)</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line"></span><br><span class="line">		Dept dept = <span class="keyword">this</span>.service.get(id);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">null</span> == dept) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"该ID："</span> + id + <span class="string">"没有没有对应的信息"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> dept;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//类似异常通知</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Dept <span class="title">processHystrix_Get</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Long id)</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Dept().setDeptno(id).setDname(<span class="string">"该ID："</span> +id + <span class="string">"没有没有对应的信息,null--@HystrixCommand"</span>)</span><br><span class="line">				.setDb_source(<span class="string">"no this database in MySQL"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>熔断机制，当微服务在某个服务处发生了超时、异常时，由Hystrix返回一个结果，结果符合调用服务者的要求。举例实际使用，需要重写FallbackFactory接口并在Feign注解中配置fallbackFactory，即可实现异常处理与业务模块分离，解耦和。</p>
+<h4 id="服务降级"><a href="#服务降级" class="headerlink" title="服务降级"></a>服务降级</h4><p>服务降级在客户端完成，暂时关闭服务，为其他服务节省资源，当服务关闭后，Hystrix依旧会为接口调用时返回一个信息。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实现FallbackFactory接口</span></span><br><span class="line"><span class="meta">@Component</span> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeptClientServiceFallbackFactory</span> <span class="keyword">implements</span> <span class="title">FallbackFactory</span>&lt;<span class="title">DeptClientService</span>&gt;</span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> DeptClientService <span class="title">create</span><span class="params">(Throwable throwable)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> DeptClientService() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> Dept <span class="title">get</span><span class="params">(<span class="keyword">long</span> id)</span></span></span><br><span class="line"><span class="function">			</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">new</span> Dept().setDeptno(id).setDname(<span class="string">"该ID："</span> + id + <span class="string">"没有没有对应的信息"</span>)</span><br><span class="line">						.setDb_source(<span class="string">"no this database in MySQL"</span>);</span><br><span class="line">						<span class="comment">//,Consumer客户端提供的降级信息,此刻服务Provider已经关闭</span></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> List&lt;Dept&gt; <span class="title">list</span><span class="params">()</span></span></span><br><span class="line"><span class="function">			</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(Dept dept)</span></span></span><br><span class="line"><span class="function">			</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="HystrixDashboard"><a href="#HystrixDashboard" class="headerlink" title="HystrixDashboard"></a>HystrixDashboard</h3><p>服务监控，持续记录通过Hystrix发起的请求的执行信息，并以统计报表和图形的形式展现给用户，即微服务的图形化监控。</p>
+<p>####依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-hystrix-dashboard<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="主类"><a href="#主类" class="headerlink" title="主类"></a>主类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableHystrixDashboard</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeptConsumerDashBoard</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		SpringApplication.run(DeptConsumerDashBoard.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="监控指标"><a href="#监控指标" class="headerlink" title="监控指标"></a>监控指标</h4><p><img src="https://images2017.cnblogs.com/blog/1254583/201801/1254583-20180128213305022-1926741816.png" alt=""></p>
+<ol>
+<li>Delay：轮询监控信息的延迟事件，默认2000毫秒</li>
+<li>Title：监控标题</li>
+</ol>
+<p><img src="https://images2017.cnblogs.com/blog/1254583/201801/1254583-20180128220443600-243457834.png" alt=""></p>
+<ol>
+<li><font color="red">失败</font></li>
+<li><font color="orange">超时</font></li>
+<li><font color="green">成功</font></li>
+<li><font color="lightblue">错误请求</font></li>
+<li><font color="purple">拒绝</font></li>
+<li><font color="blue">短路</font></li>
+<li><font color="black">错误</font>
+
+</li>
+</ol>
+<h3 id="Zuul路由网关"><a href="#Zuul路由网关" class="headerlink" title="Zuul路由网关"></a>Zuul路由网关</h3><p>路由功能，对外部请求进行转发，即外部访问与服务的路由网关，提供过滤、路由功能，将以一个服务注册到Eureka中，同时实现网关功能，可以配置其他服务的路由访问规则。</p>
+<h4 id="依赖-2"><a href="#依赖-2" class="headerlink" title="依赖"></a>依赖</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-zuul<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-eureka<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span> </span><br><span class="line"><span class="attr">  port:</span> <span class="number">9527</span> <span class="string">//server_port</span></span><br><span class="line">  					 <span class="string">//服务将通过路由进行访问</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">spring:</span> </span><br><span class="line"><span class="attr">  application:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">microservicecloud-zuul-gateway</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">eureka:</span> </span><br><span class="line"><span class="attr">  client:</span> </span><br><span class="line"><span class="attr">    service-url:</span> </span><br><span class="line"><span class="attr">      defaultZone:</span> <span class="string">eureka-ip</span></span><br><span class="line"><span class="attr">  instance:</span></span><br><span class="line"><span class="attr">    instance-id:</span> <span class="string">intance_id</span></span><br><span class="line"><span class="attr">    prefer-ip-address:</span> <span class="literal">true</span> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="attr">zuul:</span> <span class="string">//服务地址映射定义</span></span><br><span class="line">  <span class="comment">#ignored-services: microservicecloud-dept	//过滤服务地址访问</span></span><br><span class="line"><span class="attr">  prefix:</span> <span class="string">/prefix</span>				<span class="string">//公共前缀</span></span><br><span class="line"><span class="attr">  ignored-services:</span> <span class="string">"*"</span>	<span class="string">//过滤全部服务地址</span></span><br><span class="line"><span class="attr">  routes:</span> </span><br><span class="line">    <span class="string">mydept.serviceId:</span> <span class="string">microservicecloud-dept</span></span><br><span class="line">    <span class="string">mydept.path:</span> <span class="string">/myurl/**</span></span><br><span class="line"> </span><br><span class="line"><span class="attr"> info:</span></span><br></pre></td></tr></table></figure>
+<h3 id="分布式配置中心"><a href="#分布式配置中心" class="headerlink" title="分布式配置中心"></a>分布式配置中心</h3><p>针对当出现大量的微服务时，提供一个配置中心，对微服务的配置进行集中管理。</p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1536500314999&amp;di=6f2806c802fa85fe8ed027d79d0b4a25&amp;imgtype=0&amp;src=http%3A%2F%2Fblog.didispace.com%2Fassets%2F5-6.png" alt=""></p>
+<h4 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h4><ol>
+<li><p>在github中创建一个库并保存地址</p>
+</li>
+<li><p>在本地创建库并克隆创建的库</p>
+</li>
+<li>创建文件配置文件application.yml（UTF-8）</li>
+<li>提交文件</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server: </span><br><span class="line">  port: 3344 </span><br><span class="line">  </span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name:  microservicecloud-config</span><br><span class="line">  cloud:</span><br><span class="line">    config:</span><br><span class="line">      server:</span><br><span class="line">        git:</span><br><span class="line">          uri: *:*.git #GitHub上面的git仓库名字</span><br></pre></td></tr></table></figure>
+<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4><p>#####bootstrap.xml</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  cloud:</span></span><br><span class="line"><span class="attr">    config:</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">microservicecloud-config-client</span> <span class="comment">#需要从github上读取的资源名称，</span></span><br><span class="line">      																			<span class="comment">#注意没有yml后缀名</span></span><br><span class="line"><span class="attr">      profile:</span> <span class="string">test</span>   <span class="comment">#本次访问的配置项</span></span><br><span class="line"><span class="attr">      label:</span> <span class="string">master</span>   </span><br><span class="line"><span class="attr">      uri:</span> <span class="string">ip/url:3344</span>  <span class="comment">#本微服务启动后先去找3344号服务，</span></span><br><span class="line">      									<span class="comment">#通过SpringCloudConfig获取GitHub的服务地址</span></span><br></pre></td></tr></table></figure>
+<h5 id="依赖-3"><a href="#依赖-3" class="headerlink" title="依赖"></a>依赖</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring/" rel="tag"># spring</a>
+          
+            <a href="/tags/微服务/" rel="tag"># 微服务</a>
+          
+            <a href="/tags/框架整合/" rel="tag"># 框架整合</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/17/Java-8/" rel="next" title="Java 8">
+                <i class="fa fa-chevron-left"></i> Java 8
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="W@n9" />
+            
+              <p class="site-author-name" itemprop="name">W@n9</p>
+              <p class="site-description motion-element" itemprop="description">Their feathers are just too bright.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1958862281@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#入门问题"><span class="nav-number">1.</span> <span class="nav-text">入门问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#微服务概述"><span class="nav-number">1.1.</span> <span class="nav-text">微服务概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微服务与微服务架构"><span class="nav-number">1.2.</span> <span class="nav-text">微服务与微服务架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微服务的优缺点"><span class="nav-number">1.3.</span> <span class="nav-text">微服务的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-number">1.3.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-number">1.3.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微服务技术栈"><span class="nav-number">1.4.</span> <span class="nav-text">微服务技术栈</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringCloud-架构"><span class="nav-number">2.</span> <span class="nav-text">SpringCloud 架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主流选用"><span class="nav-number">2.1.</span> <span class="nav-text">主流选用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#框架对比"><span class="nav-number">2.2.</span> <span class="nav-text">框架对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringCloud简介"><span class="nav-number">2.3.</span> <span class="nav-text">SpringCloud简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dubbo-对比-SpringCloud"><span class="nav-number">2.4.</span> <span class="nav-text">Dubbo 对比 SpringCloud</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档"><span class="nav-number">2.5.</span> <span class="nav-text">文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例"><span class="nav-number">3.</span> <span class="nav-text">示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#版本"><span class="nav-number">3.1.</span> <span class="nav-text">版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建工程"><span class="nav-number">3.2.</span> <span class="nav-text">创建工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Eureka"><span class="nav-number">3.3.</span> <span class="nav-text">Eureka</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Eureka简介"><span class="nav-number">3.3.1.</span> <span class="nav-text">Eureka简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注册中心"><span class="nav-number">3.3.2.</span> <span class="nav-text">注册中心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务提供者"><span class="nav-number">3.3.3.</span> <span class="nav-text">服务提供者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务消费者"><span class="nav-number">3.3.4.</span> <span class="nav-text">服务消费者</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#负载均衡"><span class="nav-number">3.4.</span> <span class="nav-text">负载均衡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ribbon"><span class="nav-number">3.4.1.</span> <span class="nav-text">Ribbon</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法"><span class="nav-number">3.4.2.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义负载均衡策略"><span class="nav-number">3.4.3.</span> <span class="nav-text">自定义负载均衡策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义规则编写"><span class="nav-number">3.4.4.</span> <span class="nav-text">自定义规则编写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#策略类继承关系"><span class="nav-number">3.4.5.</span> <span class="nav-text">策略类继承关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Feign"><span class="nav-number">3.5.</span> <span class="nav-text">Feign</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#依赖"><span class="nav-number">3.5.1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接口-注解"><span class="nav-number">3.5.2.</span> <span class="nav-text">接口+注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Controller"><span class="nav-number">3.5.3.</span> <span class="nav-text">Controller</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hystrix"><span class="nav-number">3.6.</span> <span class="nav-text">Hystrix</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#依赖-1"><span class="nav-number">3.6.1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启用"><span class="nav-number">3.6.2.</span> <span class="nav-text">启用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Controller-1"><span class="nav-number">3.6.3.</span> <span class="nav-text">Controller</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务降级"><span class="nav-number">3.6.4.</span> <span class="nav-text">服务降级</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HystrixDashboard"><span class="nav-number">3.7.</span> <span class="nav-text">HystrixDashboard</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主类"><span class="nav-number">3.7.1.</span> <span class="nav-text">主类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务"><span class="nav-number">3.7.2.</span> <span class="nav-text">服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监控指标"><span class="nav-number">3.7.3.</span> <span class="nav-text">监控指标</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zuul路由网关"><span class="nav-number">3.8.</span> <span class="nav-text">Zuul路由网关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#依赖-2"><span class="nav-number">3.8.1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置"><span class="nav-number">3.8.2.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式配置中心"><span class="nav-number">3.9.</span> <span class="nav-text">分布式配置中心</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#服务端"><span class="nav-number">3.9.1.</span> <span class="nav-text">服务端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端"><span class="nav-number">3.9.2.</span> <span class="nav-text">客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#依赖-3"><span class="nav-number">3.9.2.1.</span> <span class="nav-text">依赖</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">W@n9</span>
+  <br>
+  <div class="powered-by"> <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 本站访客数:<span id="busuanzi_value_site_uv"></span></span>
+                                                       <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></div>
+  
+
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'UbJtdVwoawlqEf5yKO8dGq7W-gzGzoHsz',
+        appKey: '5nOMvhOssjkxUdFg81zDVoWv',
+        placeholder: '评论留下联系方式，我知道你缺一个好辅助，我主W',
+        avatar:'retro',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":200},"mobile":{"show":true},"log":false});</script></body>
+</html>

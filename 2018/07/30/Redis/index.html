@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="Redis,搭建服务器,服务器操作," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Leon" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="RedisRedis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。">
+<meta name="keywords" content="Redis,搭建服务器,服务器操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis">
+<meta property="og:url" content="https://wan9huan.github.io/2018/07/30/Redis/index.html">
+<meta property="og:site_name" content="Leon">
+<meta property="og:description" content="RedisRedis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-18T14:19:54.208Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis">
+<meta name="twitter:description" content="RedisRedis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wan9huan.github.io/2018/07/30/Redis/"/>
+
+
+
+
+
+  <title>Redis | Leon</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leon</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">You know some birds are not meant to be caged</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wan9huan.github.io/2018/07/30/Redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="W@n9">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leon">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Redis</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-30T23:11:15+08:00">
+                2018-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/30/Redis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/07/30/Redis/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><p><em>Redis</em>是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。从2010年3月15日起，<em>Redis</em>的开发工作由VMware主持。从2013年5月开始，<em>Redis</em>的开发由Pivotal赞助。</p>
+<a id="more"></a>
+<h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-server  redis.conf 启动命令  后跟配置文件位置</span><br><span class="line">redis-cli -p 6379 默认端口为6379</span><br></pre></td></tr></table></figure>
+<h3 id="数据库基本操作"><a href="#数据库基本操作" class="headerlink" title="数据库基本操作"></a>数据库基本操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -p 6379 进入数据库</span><br><span class="line">select [num]      选择库</span><br><span class="line">DBSIZE            查看key数量</span><br><span class="line">FLUSHDB           清空当前库</span><br><span class="line">FLUSHALL          清空所有库</span><br><span class="line"></span><br><span class="line">默认端口6379 默认16个库</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="五大数数据类型"><a href="#五大数数据类型" class="headerlink" title="五大数数据类型"></a>五大数数据类型</h3><p>String</p>
+<ul>
+<li>基本数据类型，一个key对应一个value</li>
+<li>二进制安全，可以包含任何数据（图片或序列化对象）</li>
+<li>最大值为512M   </li>
+</ul>
+<p>Hash</p>
+<ul>
+<li>键值对集合</li>
+<li>String类型的field和value的映射表，适合存储对象</li>
+<li>类似Java中的 Map&lt;String,Object&gt;</li>
+</ul>
+<p>List</p>
+<ul>
+<li>简单的字符串列表，按照插入顺序排序。</li>
+<li>可以添加元素到头部或尾部</li>
+<li>底层为链表</li>
+</ul>
+<p>Set</p>
+<ul>
+<li>无序无重复集合</li>
+<li>通过底层为HashTable</li>
+</ul>
+<p>Zset</p>
+<ul>
+<li>sorted set </li>
+<li>每个元素关联一个double类型的分数排序</li>
+</ul>
+<hr>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>​    key</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">keys *</span><br><span class="line"><span class="comment">#查看所有key</span></span><br><span class="line">exists [key_name]</span><br><span class="line"><span class="comment">#判断key是否存在</span></span><br><span class="line">move   [key_name] [db_num]</span><br><span class="line"><span class="comment">#移动key到某个库</span></span><br><span class="line">expire [key_name] [时间s]</span><br><span class="line"><span class="comment">#设置key过期时间 单位秒</span></span><br><span class="line">ttl    [key_name]</span><br><span class="line"><span class="comment">#查看过期时间</span></span><br><span class="line"><span class="built_in">type</span>   [key_name]</span><br><span class="line"><span class="comment">#查看key类型</span></span><br></pre></td></tr></table></figure>
+<p>​    String</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span>/get/del/append/strlen</span><br><span class="line"><span class="comment">#数据操作</span></span><br><span class="line">Incr/decr/incrby/decrby</span><br><span class="line"><span class="comment">#自增自减 自增自减某值 数字</span></span><br><span class="line">getrange/setrange</span><br><span class="line"><span class="comment">#设置/获取子串</span></span><br><span class="line">setex &lt;setex k1 10 v4&gt;</span><br><span class="line"><span class="comment">#设置过期时间</span></span><br><span class="line">sentnx</span><br><span class="line"><span class="comment">#避免覆盖添加值</span></span><br><span class="line">mset/mget/msetnx</span><br><span class="line"><span class="comment">#批量设置获取（重复失效）</span></span><br></pre></td></tr></table></figure>
+<p>​    List</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Lpush/Rpush/Lrange</span><br><span class="line"><span class="comment">#左右进入\查看 左栈右队</span></span><br><span class="line">Lpop/rpop</span><br><span class="line"><span class="comment">#出栈\出队</span></span><br><span class="line">Lindex</span><br><span class="line"><span class="comment">#按照索引获取</span></span><br><span class="line">Llen</span><br><span class="line"><span class="comment">#获取长度</span></span><br><span class="line">Lren key [n] [value]</span><br><span class="line"><span class="comment">#删除多个值</span></span><br><span class="line">Ltrim key</span><br><span class="line"><span class="comment">#截取子串</span></span><br><span class="line">Rpoplpush [list_org] [list_dist]</span><br><span class="line"><span class="comment">#出队压栈</span></span><br><span class="line">Lset key index value</span><br><span class="line"><span class="comment">#给某位置赋值</span></span><br><span class="line">Linsert key befor/after <span class="string">""</span></span><br><span class="line"><span class="comment">#在某字符前/后插值</span></span><br></pre></td></tr></table></figure>
+<p>​    Set</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">sadd								</span><br><span class="line"><span class="comment">#不重复/重复自动去除</span></span><br><span class="line">smemebers						</span><br><span class="line"><span class="comment">#查看集合所有元素</span></span><br><span class="line">sismember							</span><br><span class="line"><span class="comment">#检测是否为成员</span></span><br><span class="line">scard								</span><br><span class="line"><span class="comment">#获取集合元素个数</span></span><br><span class="line">srem key value						</span><br><span class="line"><span class="comment">#删除元素</span></span><br><span class="line">srandmember key int					</span><br><span class="line"><span class="comment">#随机出N个整数</span></span><br><span class="line">spop key							</span><br><span class="line"><span class="comment">#随机出栈</span></span><br><span class="line">smove key1 key2						</span><br><span class="line"><span class="comment">#随机出一个值给集合</span></span><br><span class="line">sdiff/sinter/sunion					</span><br><span class="line"><span class="comment">#差集/交集/并集</span></span><br></pre></td></tr></table></figure>
+<p>​    Hash</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">hset/hget/hmset/hmget/hgetall/hdel</span>	</span><br><span class="line"><span class="comment">#获取添加移除单个/多个</span></span><br><span class="line"><span class="string">customer：</span></span><br><span class="line">		<span class="attr">id:</span> <span class="number">11</span></span><br><span class="line">		<span class="attr">name:</span> <span class="string">Lee</span></span><br><span class="line">		<span class="attr">age:</span> <span class="number">20</span></span><br><span class="line"><span class="string">hmset</span> <span class="string">customer</span> <span class="string">id</span> <span class="number">11</span> <span class="string">name</span> <span class="string">Lee</span> <span class="string">age</span> <span class="number">20</span></span><br><span class="line"><span class="string">hle</span>									</span><br><span class="line"><span class="comment">#获取长度</span></span><br><span class="line"><span class="string">hexists</span> <span class="string">key</span>							</span><br><span class="line"><span class="comment">#获取某个key</span></span><br><span class="line"><span class="string">hkeys/hvals</span>							</span><br><span class="line"><span class="comment">#获取键\值</span></span><br><span class="line"><span class="string">hincrby/hincrbyfloat</span>				</span><br><span class="line"><span class="comment">#自增某个值</span></span><br><span class="line"><span class="string">hstnx</span>								<span class="comment">#避免覆盖插值</span></span><br></pre></td></tr></table></figure>
+<p>​    Zset</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">zadd/zrange</span>							</span><br><span class="line"><span class="comment">#添加/查看</span></span><br><span class="line"><span class="string">zdd</span> <span class="string">zset</span> <span class="number">1</span> <span class="string">v1</span> <span class="number">2</span> <span class="string">v2</span> <span class="number">3</span> <span class="string">v3</span></span><br><span class="line"><span class="string">zrangbyscore</span> <span class="string">[begin_s]</span> <span class="string">[end_s]</span>		</span><br><span class="line"><span class="comment">#区域查看（不包含 limit</span></span><br><span class="line"><span class="string">zrem</span> <span class="string">key</span>							</span><br><span class="line"><span class="comment">#删除某个值</span></span><br><span class="line"><span class="string">zcard/zcount</span>						</span><br><span class="line"><span class="comment">#统计个数</span></span><br><span class="line"><span class="string">zrank</span>								</span><br><span class="line"><span class="comment">#取值的下表</span></span><br><span class="line"><span class="string">zscore</span>								</span><br><span class="line"><span class="comment">#取值的分数</span></span><br><span class="line"><span class="string">zrevrank</span>							</span><br><span class="line"><span class="comment">#取下标</span></span><br><span class="line"><span class="string">zrevrange</span></span><br><span class="line"><span class="string">zrevrangebyscore</span>					</span><br><span class="line"><span class="comment">#结束分数到开始分数</span></span><br></pre></td></tr></table></figure>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">#守护进程方式</span><br><span class="line">daemonize yes</span><br><span class="line"></span><br><span class="line">#默认写入pid</span><br><span class="line">pidfile /var/run/redis_6379.pid</span><br><span class="line">#默认端口</span><br><span class="line">port 6379</span><br><span class="line"></span><br><span class="line"># include /path/to/other.conf</span><br><span class="line">bind 127.0.0.1</span><br><span class="line"></span><br><span class="line">#超时关闭连接</span><br><span class="line">timeout 0</span><br><span class="line"></span><br><span class="line">#日志级别</span><br><span class="line"># Specify the server verbosity level.</span><br><span class="line"># This can be one of:</span><br><span class="line"># debug (a lot of information, useful for </span><br><span class="line"># development/testing)</span><br><span class="line"># verbose (many rarely useful info, but not a mess like the # debug level)</span><br><span class="line"># notice (moderately verbose, what you want in production  </span><br><span class="line"># probably)</span><br><span class="line"># warning (only very important / critical messages are </span><br><span class="line"># logged)</span><br><span class="line">loglevel notice</span><br><span class="line"></span><br><span class="line"># output for logging but daemonize, logs will be sent to </span><br><span class="line"># /dev/null</span><br><span class="line">logfile &quot;&quot;</span><br><span class="line">#默认数据库数量</span><br><span class="line">databases 16</span><br><span class="line"></span><br><span class="line">#同步数据文件</span><br><span class="line">save &lt;seconds&gt; &lt;changes&gt;</span><br><span class="line">#默认提供三个条件 1 in 900s  10 in 300 1000 in 60</span><br><span class="line">save 900 1</span><br><span class="line">save 300 10</span><br><span class="line">save 60 10000</span><br><span class="line"></span><br><span class="line">#缓存级别</span><br><span class="line"># volatile-lru -&gt; Evict using approximated LRU among the </span><br><span class="line"># keys with an expire set.</span><br><span class="line"># allkeys-lru -&gt; Evict any key using approximated LRU.</span><br><span class="line"># volatile-lfu -&gt; Evict using approximated LFU among the </span><br><span class="line"># keys with an expire set.</span><br><span class="line"># allkeys-lfu -&gt; Evict any key using approximated LFU.</span><br><span class="line"># volatile-random -&gt; Remove a random key among the ones with</span><br><span class="line"># an expire set.</span><br><span class="line"># allkeys-random -&gt; Remove a random key, any key.</span><br><span class="line"># volatile-ttl -&gt; Remove the key with the nearest expire</span><br><span class="line"># time (minor TTL)</span><br><span class="line"># noeviction -&gt; Don&apos;t evict anything, just return an error</span><br><span class="line"># on write operations.</span><br><span class="line"># maxmemory-policy noeviction</span><br><span class="line"></span><br><span class="line">#数据库路径</span><br><span class="line">dir ./</span><br><span class="line"></span><br><span class="line">#默认密码</span><br><span class="line"># requirepass foobared</span><br><span class="line"></span><br><span class="line">#默认最大连接数</span><br><span class="line"># maxclients 10000</span><br><span class="line"></span><br><span class="line">#最大内存</span><br><span class="line"># maxmemory &lt;bytes&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><h3 id="RDB（Redis-Database）"><a href="#RDB（Redis-Database）" class="headerlink" title="RDB（Redis Database）"></a>RDB（Redis Database）</h3><pre><code>在指定时间间隔内将内存中的数据集快照写入磁盘中即Snapshot快照，恢复时直接将快照导入内存。
+
+持久化由Fork进程进行，主进程不进行IO擦破做，对数据完整性不敏感，最后一次持久化的数据可能丢失。
+
+Fork为原进程的复制，所有数据与原进程完全一致，并作为原进程的子进程。
+
+保存形式为 dump.rdb
+
+配置
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">############### SNAPSHOTTING ##########################</span><br><span class="line">#</span><br><span class="line"># Save the DB on disk:</span><br><span class="line">#</span><br><span class="line">#   save &lt;seconds&gt; &lt;changes&gt;</span><br><span class="line">#   In the example below the behaviour will be to save:</span><br><span class="line">#   after 900 sec (15 min) if at least 1 key changed</span><br><span class="line">#   after 300 sec (5 min) if at least 10 keys changed</span><br><span class="line">#   after 60 sec if at least 10000 keys changed</span><br><span class="line">#</span><br><span class="line">#	Note: you can disable saving completely by commenting</span><br><span class="line">#	out all &quot;save&quot; lines.</span><br><span class="line">#</span><br><span class="line">#	It is also possible to remove all the previously </span><br><span class="line">#	configured save</span><br><span class="line">#	points by adding a save directive with a single empty </span><br><span class="line">#	string argument like in the following example:</span><br><span class="line">#   save &quot;&quot;  #save 命令可手动保存（阻塞式） bgsave 异步不阻塞</span><br><span class="line">#	在设置时间内改动后自动分片存储，触发快照，备份文件自动恢复</span><br><span class="line">save 900 1</span><br><span class="line">save 300 10</span><br><span class="line">save 60 10000</span><br><span class="line"></span><br><span class="line">#恢复文件位置</span><br><span class="line">dir ./</span><br><span class="line"></span><br><span class="line">#默认恢复文件</span><br><span class="line"># The filename where to dump the DB</span><br><span class="line">dbfilename dump.rdb</span><br><span class="line"></span><br><span class="line">#数据一致性</span><br><span class="line">stop-writes-on-bgsave-error yes</span><br><span class="line"></span><br><span class="line">#压缩算法使用</span><br><span class="line">rdbcompression yes</span><br><span class="line"></span><br><span class="line">#数据校验（为增加性能可关闭 不推荐关闭）</span><br><span class="line">rdbchecksum yes</span><br></pre></td></tr></table></figure>
+<p>优点：适合大规模的数据恢复，对数据完整性和一致性要求不高</p>
+<p>缺点：意外宕机只有最后一次快照，fork进程导致两倍程序消耗</p>
+<hr>
+<h3 id="AOF（Append-Only-File）"><a href="#AOF（Append-Only-File）" class="headerlink" title="AOF（Append Only File）"></a>AOF（Append Only File）</h3><pre><code>通过日志的形式记录每个写操作。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#默认关闭</span><br><span class="line">appendonly no</span><br><span class="line"></span><br><span class="line">#默认文件名</span><br><span class="line">appendfilename &quot;appendonly.aof&quot;</span><br><span class="line"></span><br><span class="line"># Redis supports three different modes:</span><br><span class="line">#</span><br><span class="line"># no: don&apos;t fsync, just let the OS flush the data when it </span><br><span class="line"># wants. Faster. #不设置</span><br><span class="line"># always: fsync after every write to the append only log.</span><br><span class="line"># Slow, Safest.	 #总是使用</span><br><span class="line"># everysec: fsync only one time every second. Compromise.</span><br><span class="line"># The default is &quot;everysec&quot; #默认。</span><br><span class="line">appendfsync everysec</span><br><span class="line"></span><br><span class="line">#重写时运用appendsync</span><br><span class="line">no-appendfsync-on-rewrite no</span><br><span class="line"></span><br><span class="line">#重写比例和重写日志大小</span><br><span class="line">auto-aof-rewrite-percentage 100</span><br><span class="line">auto-aof-rewrite-min-size 64mb #通常3GB+</span><br></pre></td></tr></table></figure>
+<p>优点：每秒同步 修改同步 不同步</p>
+<p>缺点：恢复速度慢 存储空间大</p>
+<hr>
+<p>推荐使用两种共用，启动时优先载入AOF备份，AOF数据丢失不超过2秒的数据</p>
+<hr>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><pre><code>串行执行一组命令，命令会被序列化，不许阻塞，即一个事务。没有隔离级别的概念，不保证原子性，没有回滚，部分支持事务。
+</code></pre><h3 id="基本命令-1"><a href="#基本命令-1" class="headerlink" title="基本命令"></a><strong>基本命令</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DISCARD					放弃事务</span><br><span class="line">EXEC					执行事务块</span><br><span class="line">MULTI					标记开始</span><br><span class="line">UNWATCH					取消监视所有键</span><br><span class="line">WATCH KEY [key ...]		开启监视</span><br></pre></td></tr></table></figure>
+<h3 id="事务使用步骤"><a href="#事务使用步骤" class="headerlink" title="事务使用步骤"></a><strong>事务使用步骤</strong></h3><pre><code>MULTI                //开启事务，返回OK
+
+Operationes      //入队不操作，返回QUEUE，出现错误直接取消
+
+EXEC/MULTI    //执行或取消执行，单个语句出错，其他可以执行
+</code></pre><p><strong>WATCH监控</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">悲观锁：如表级锁，当修改时加锁，其他修改无法执行（高一致，低并发）</span><br><span class="line"></span><br><span class="line">乐观锁：不锁+版本号 在修改时读取版本号，执行修改时版本号&gt;=读取时版本</span><br><span class="line"></span><br><span class="line">CAS：即compare and swap 或者 compare and set，涉及到三个操作数，数据所在的内存值，预期值，新值。</span><br><span class="line">当需要更新时，判断当前内存值与之前取到的值是否相等，若相等，则用新值更新，若失败则重试，一般情况下</span><br><span class="line">是一个自旋操作，即不断的重试。</span><br></pre></td></tr></table></figure>
+<h3 id="WATCH使用步骤"><a href="#WATCH使用步骤" class="headerlink" title="WATCH使用步骤"></a><strong>WATCH使用步骤</strong></h3><pre><code>WATCH balance
+
+MULTL
+
+Operations
+
+EXEC
+
+//乐观锁已经被修改的版本将无法执行事务 
+
+//执行后锁已被清除
+
+已被修改  --&gt;  UNWATCH取消监控 --&gt; WATCH  --&gt;
+</code></pre><hr>
+<h2 id="发布与订阅"><a href="#发布与订阅" class="headerlink" title="发布与订阅"></a>发布与订阅</h2><pre><code>进程间的一种消息通信模式：发送者（pub）与订阅者（sub） 主题模式
+</code></pre><h3 id="使用命令"><a href="#使用命令" class="headerlink" title="使用命令"></a><strong>使用命令</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PSBUSCRIBE pattern[pattern ...]			订阅</span><br><span class="line">PUBSUB subcommand[arg [arg]]			查看订阅状态</span><br><span class="line">PUBLISH channel message					发布消息到主题</span><br><span class="line">PUNSUBSCRIBE pattern					取消订阅</span><br><span class="line">SUBSCRIBE channel[channel ...]			订阅多个</span><br><span class="line">UNSUBSCRIBE[channel[channel]]			退订多个</span><br></pre></td></tr></table></figure>
+<h3 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a><strong>使用步骤</strong></h3><pre><code>订阅消息即进入消息监听状态，消息发布时自动接收消息
+
+发布者发布消息到对应频道，消息监听处即受到消息
+</code></pre><hr>
+<h2 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h2><h3 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a><strong>配置方法</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">info replication			查看数据库信息</span><br><span class="line">SLAVEOF IP Port				隶属于主机</span><br></pre></td></tr></table></figure>
+<h3 id="info-replication"><a href="#info-replication" class="headerlink" title="info replication"></a><strong>info replication</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#从机</span><br><span class="line">role:slave</span><br><span class="line">master_host:127.0.0.1</span><br><span class="line">master_port:6379</span><br><span class="line"></span><br><span class="line">#主机</span><br><span class="line">role:master</span><br><span class="line">connected_slaves:2</span><br><span class="line">slave0:ip=127.0.0.1,port=6381,state=online,offset=1321,lag=0</span><br><span class="line">slave1:ip=127.0.0.1,port=6380,state=online,offset=1321,lag=1</span><br><span class="line">#主机可读可写、从机可读不可写</span><br><span class="line">#只需要在从机上使用命令SLAVEOF IP port 命令即可</span><br><span class="line">#从机可以访问所有缓存中数据 主机宕机后可重开 从机依旧 反之不行</span><br></pre></td></tr></table></figure>
+<pre><code>中心化配置，主机宕机系统瘫痪，从机宕机需要重新配置，一主二从。
+</code></pre><h3 id="SLAVEOF-no-one"><a href="#SLAVEOF-no-one" class="headerlink" title="SLAVEOF no one"></a><strong>SLAVEOF no one</strong></h3><pre><code>将从机转换为主机，从机需要重新配置
+</code></pre><h3 id="复制原理"><a href="#复制原理" class="headerlink" title="复制原理"></a><strong>复制原理</strong></h3><pre><code>首次全量复制，而后增量复制，重连全量复制。
+</code></pre><h3 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a><strong>哨兵模式</strong></h3><pre><code>创建`sentinel.conf`配置文件，加入哨兵监视器
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sentinel monitor host-main 127.0.0.1 6379    1</span><br><span class="line">				 监视名		IP		端口	 票数</span><br></pre></td></tr></table></figure>
+<pre><code>命令启动:`redis-sentinel sentinel.conf`
+
+自动监视，当主机宕机自动选举主机，原主机恢复后自动设置为从机待机
+</code></pre><p><strong>缺点</strong>： 有延迟，当系统使用高时，延迟现象比较严重</p>
+<hr>
+<h2 id="Java中使用"><a href="#Java中使用" class="headerlink" title="Java中使用"></a>Java中使用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">Jedis jedis = <span class="keyword">new</span> Jedis(url,port);</span><br><span class="line"></span><br><span class="line"><span class="comment">//事务</span></span><br><span class="line">Transaction transaction = jedis.multi();</span><br><span class="line"></span><br><span class="line">transaction.set();</span><br><span class="line">   ...</span><br><span class="line">transaction.discard();	<span class="comment">//取消执行</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//开启watch</span></span><br><span class="line"><span class="keyword">int</span> now;</span><br><span class="line">jedis.watch(<span class="string">"key"</span>);</span><br><span class="line"><span class="keyword">int</span> value = Integer.paraseInt(jedis.get(<span class="string">"key"</span>));</span><br><span class="line"><span class="keyword">if</span>(value &lt; now)&#123;</span><br><span class="line">  jedis.unwatch();</span><br><span class="line">  soutp(<span class="string">"redo"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">false</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  Transaction tr = jedis.multi();</span><br><span class="line">  transaction.method(<span class="string">""</span>,<span class="string">""</span>);</span><br><span class="line">  transaction.exex()</span><br><span class="line">&#125;</span><br><span class="line">jedis.unwatch();</span><br><span class="line"></span><br><span class="line"><span class="comment">//主从复制</span></span><br><span class="line">Jedis jedis_master = <span class="keyword">new</span> Jedis(url,port);</span><br><span class="line">Jedis jedis_salve  = <span class="keyword">new</span> Jedis(url,port);</span><br><span class="line"></span><br><span class="line"><span class="comment">//主从复制 读写分离</span></span><br><span class="line">jedis_salve.slaveof(url,port);</span><br><span class="line">jedis_master.set(...);</span><br><span class="line">String result = jedis_salve.get(...);</span><br><span class="line"></span><br><span class="line"><span class="comment">//JedisPool</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JedisPoolUtil</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> JedisPool jedisPool = <span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">JedisPoolUtrl</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> JedisPool <span class="title">getJedisPoolInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">	  <span class="keyword">if</span>(<span class="keyword">null</span> == jedisPool)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (JedisPoolUtil.class)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">if</span>(<span class="keyword">null</span> == jedisPool)</span><br><span class="line">          &#123;</span><br><span class="line">        JedisPoolConfig poolConfig = <span class="keyword">new</span> JedisPoolConfig();</span><br><span class="line">            poolConfig.set(...);</span><br><span class="line">        jedisPool = <span class="keyword">new</span> JedisPool(poolConfig,url,port);</span><br><span class="line">        <span class="keyword">return</span> JedisPool;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> voie <span class="title">relase</span><span class="params">(JedisPool jedisPool,Jedis jedis)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">null</span> != jedis)</span><br><span class="line">    &#123;</span><br><span class="line">      jedisPool.returnResourceObject(jedis);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redis/" rel="tag"># Redis</a>
+          
+            <a href="/tags/搭建服务器/" rel="tag"># 搭建服务器</a>
+          
+            <a href="/tags/服务器操作/" rel="tag"># 服务器操作</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/27/Mybatis-使用详解/" rel="next" title="Mybatis 使用详解">
+                <i class="fa fa-chevron-left"></i> Mybatis 使用详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/17/Java-8/" rel="prev" title="Java 8">
+                Java 8 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="W@n9" />
+            
+              <p class="site-author-name" itemprop="name">W@n9</p>
+              <p class="site-description motion-element" itemprop="description">Their feathers are just too bright.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1958862281@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis"><span class="nav-number">1.</span> <span class="nav-text">Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本命令"><span class="nav-number">1.1.</span> <span class="nav-text">基本命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库基本操作"><span class="nav-number">1.2.</span> <span class="nav-text">数据库基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五大数数据类型"><span class="nav-number">1.3.</span> <span class="nav-text">五大数数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">1.4.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文件"><span class="nav-number">1.5.</span> <span class="nav-text">配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久化"><span class="nav-number">2.</span> <span class="nav-text">持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB（Redis-Database）"><span class="nav-number">2.1.</span> <span class="nav-text">RDB（Redis Database）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF（Append-Only-File）"><span class="nav-number">2.2.</span> <span class="nav-text">AOF（Append Only File）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务"><span class="nav-number">3.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本命令-1"><span class="nav-number">3.1.</span> <span class="nav-text">基本命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务使用步骤"><span class="nav-number">3.2.</span> <span class="nav-text">事务使用步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WATCH使用步骤"><span class="nav-number">3.3.</span> <span class="nav-text">WATCH使用步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布与订阅"><span class="nav-number">4.</span> <span class="nav-text">发布与订阅</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用命令"><span class="nav-number">4.1.</span> <span class="nav-text">使用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用步骤"><span class="nav-number">4.2.</span> <span class="nav-text">使用步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主从复制"><span class="nav-number">5.</span> <span class="nav-text">主从复制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置方法"><span class="nav-number">5.1.</span> <span class="nav-text">配置方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#info-replication"><span class="nav-number">5.2.</span> <span class="nav-text">info replication</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SLAVEOF-no-one"><span class="nav-number">5.3.</span> <span class="nav-text">SLAVEOF no one</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制原理"><span class="nav-number">5.4.</span> <span class="nav-text">复制原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#哨兵模式"><span class="nav-number">5.5.</span> <span class="nav-text">哨兵模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中使用"><span class="nav-number">6.</span> <span class="nav-text">Java中使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">W@n9</span>
+  <br>
+  <div class="powered-by"> <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 本站访客数:<span id="busuanzi_value_site_uv"></span></span>
+                                                       <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></div>
+  
+
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'UbJtdVwoawlqEf5yKO8dGq7W-gzGzoHsz',
+        appKey: '5nOMvhOssjkxUdFg81zDVoWv',
+        placeholder: '评论留下联系方式，我知道你缺一个好辅助，我主W',
+        avatar:'retro',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":200},"mobile":{"show":true},"log":false});</script></body>
+</html>
