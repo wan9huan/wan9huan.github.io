@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="React,示例演示,组件编写,ES6," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Leon" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="简介用于构建用户界面的JavaScript库，声明式、组件化、一次学习，随处编写，高效，单向数据流，使用虚拟dom及Dom Diff算法最小化页面重绘。">
+<meta name="keywords" content="React,示例演示,组件编写,ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React">
+<meta property="og:url" content="https://wan9huan.github.io/2017/09/16/React/index.html">
+<meta property="og:site_name" content="Leon">
+<meta property="og:description" content="简介用于构建用户界面的JavaScript库，声明式、组件化、一次学习，随处编写，高效，单向数据流，使用虚拟dom及Dom Diff算法最小化页面重绘。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i.imgur.com/h5khD9F.png">
+<meta property="og:image" content="http://i.imgur.com/psaZdqN.png">
+<meta property="og:image" content="https://wan9huan.github.io/2017/09/16/React/1536819570662.png">
+<meta property="og:updated_time" content="2018-09-19T04:50:53.386Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React">
+<meta name="twitter:description" content="简介用于构建用户界面的JavaScript库，声明式、组件化、一次学习，随处编写，高效，单向数据流，使用虚拟dom及Dom Diff算法最小化页面重绘。">
+<meta name="twitter:image" content="http://i.imgur.com/h5khD9F.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wan9huan.github.io/2017/09/16/React/"/>
+
+
+
+
+
+  <title>React | Leon</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leon</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">You know some birds are not meant to be caged</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wan9huan.github.io/2017/09/16/React/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="W@n9">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leon">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">React</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-16T08:38:05+08:00">
+                2017-09-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端框架/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/16/React/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/09/16/React/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>用于构建用户界面的JavaScript库，声明式、组件化、一次学习，随处编写，高效，单向数据流，使用虚拟dom及Dom Diff算法最小化页面重绘。</p>
+<a id="more"></a>
+<h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><p>react.js: React的核心库</p>
+<p>react-dom.js: 提供操作DOM的react扩展库</p>
+<p>babel.min.js: 解析<strong>JSX</strong>语法代码<strong>转</strong>为纯<strong>JS</strong>语法代码的库</p>
+<h3 id="hello"><a href="#hello" class="headerlink" title="hello"></a>hello</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> =<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react-dom.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/babel.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/babel"</span>&gt;</span><span class="undefined">//jsx ---&gt; js</span></span><br><span class="line"><span class="undefined">    //1.创建虚拟dom</span></span><br><span class="line"><span class="xml">    var vdom = <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello React!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="undefined">    //2.渲染虚拟dom到页面</span></span><br><span class="line"><span class="undefined">    ReactDOM.render(vdom,document.getElementById('main'))</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h3><p>javascript xml, react定义了一种类似于xml的js扩展语法，xml+js，用来创建react虚拟dom对象，语法规则，当遇见尖括号时，解析为标签，当遇见大括号时，解析为js，浏览器不能直接解析jsx代码，需要babel转换为js代码才可以运行，使用jsx需要给脚本标签加上type=”text/babel”，声明需要babel进行处理。</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>ReactDOM.rander(virtualDOM,containerDOM)</p>
+<p>将虚拟的DOM渲染成真实DOM</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">"dom1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react-dom.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/babel.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/babel"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    </span></span><br><span class="line"><span class="undefined">    const names = ['jQuery','Zepto','Angular','React','Vue']</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    const ul =(</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">        &#123;names.map((name,index) =&gt; <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span>&gt;</span>&#123;name&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span>)&#125;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span>)</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    ReactDOM.render(ul,document.getElementById('dom1'))</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h3><p>向外提供特定功能的js程序，一般为一个js文件，用于复用js，简化js的编写，提高js运行的效率。</p>
+<h3 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h3><p>用来实现特定功能效果的代码集合，即一个页面的版块，包含组件的html、css、js、所有资源。</p>
+<h2 id="面向组件编程"><a href="#面向组件编程" class="headerlink" title="面向组件编程"></a>面向组件编程</h2><h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> =<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> =<span class="string">"main2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react-dom.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/babel.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/babel"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    //1.定义组件</span></span><br><span class="line"><span class="xml">    var vdom = <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello React!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="undefined">    function Component() &#123;</span></span><br><span class="line"><span class="xml">        return <span class="tag">&lt;<span class="name">h2</span>&gt;</span>这个标签来自一个组件<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    //无状态组件使用函数方式创建、效率更高</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">		//类的方式具备状态</span></span><br><span class="line"><span class="undefined">    class Component2 extends React.Component&#123;</span></span><br><span class="line"><span class="undefined">        </span></span><br><span class="line"><span class="undefined">        render()&#123;</span></span><br><span class="line"><span class="xml">            return <span class="tag">&lt;<span class="name">h2</span>&gt;</span>这个标签来自一个组件类<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    //2.渲染组件标签</span></span><br><span class="line"><span class="xml">    ReactDOM.render(<span class="tag">&lt;<span class="name">Component</span> /&gt;</span>,document.getElementById('main'))</span></span><br><span class="line"><span class="xml">    ReactDOM.render(<span class="tag">&lt;<span class="name">Component2</span> /&gt;</span>,document.getElementById('main2'))</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="组件属性"><a href="#组件属性" class="headerlink" title="组件属性"></a>组件属性</h3><h4 id="state"><a href="#state" class="headerlink" title="state"></a>state</h4><p>State属性是组件的状态属性，页面中组件的重新渲染由此属性控制，其值是一个对象，可以包含多个数据。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> =<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react-dom.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/babel.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/babel"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    //1.定义组件</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    class News extends React.Component&#123;</span></span><br><span class="line"><span class="undefined">        </span></span><br><span class="line"><span class="undefined">        constructor(props)&#123;</span></span><br><span class="line"><span class="undefined">            super(props)</span></span><br><span class="line"><span class="undefined">            </span></span><br><span class="line"><span class="undefined">            this.state = &#123;</span></span><br><span class="line"><span class="undefined">                isState:false</span></span><br><span class="line"><span class="undefined">            &#125;//初始化状态</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            //绑定新方法this</span></span><br><span class="line"><span class="undefined">            this.handleClick = this.handleClick.bind(this)</span></span><br><span class="line"><span class="undefined">            //必须赋值 否则 函数中的state是空值</span></span><br><span class="line"><span class="undefined">        &#125;//调用父类构造</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        //新增方法 this 为空</span></span><br><span class="line"><span class="undefined">        handleClick()&#123;</span></span><br><span class="line"><span class="undefined">            console.log(this)</span></span><br><span class="line"><span class="undefined">            const isState = !this.state.isState</span></span><br><span class="line"><span class="undefined">            </span></span><br><span class="line"><span class="undefined">            this.setState(&#123;isState&#125;)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        //重写方法</span></span><br><span class="line"><span class="undefined">        render()&#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            const &#123;isState&#125; = this.state</span></span><br><span class="line"><span class="xml">            return <span class="tag">&lt;<span class="name">h2</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleClick&#125;</span>&gt;</span>&#123;isState?'发布新闻':'没有新闻'&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    //2.渲染组件标签</span></span><br><span class="line"><span class="xml">    ReactDOM.render(<span class="tag">&lt;<span class="name">News</span> /&gt;</span>,document.getElementById('main'))</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>构造器初始化状态、绑定状态</li>
+<li>render方法读取状态</li>
+<li>事件函数中修改状态</li>
+</ol>
+<h4 id="props"><a href="#props" class="headerlink" title="props"></a>props</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> =<span class="string">"man"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> =<span class="string">"woman"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react-dom.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/babel.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/prop-types.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/babel"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    //1.创建虚拟dom</span></span><br><span class="line"><span class="undefined">    function Persion(props) &#123;</span></span><br><span class="line"><span class="undefined">        return(</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>姓名：&#123;props.name&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>年龄：&#123;props.age&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>性别：&#123;props.sex&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="undefined">        )</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    Persion.defaultProps = &#123;</span></span><br><span class="line"><span class="undefined">        sex: 'man',</span></span><br><span class="line"><span class="undefined">        age: 18</span></span><br><span class="line"><span class="undefined">    &#125;//默认值</span></span><br><span class="line"><span class="undefined">    </span></span><br><span class="line"><span class="undefined">    Persion.propTypes=&#123;</span></span><br><span class="line"><span class="undefined">        name: PropTypes.string.isRequired,</span></span><br><span class="line"><span class="undefined">        age: PropTypes.number</span></span><br><span class="line"><span class="undefined">    &#125;//数据校验及数据是否为空</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    const p1 = &#123;</span></span><br><span class="line"><span class="undefined">        name: 'Wang',</span></span><br><span class="line"><span class="undefined">        age: 18,</span></span><br><span class="line"><span class="undefined">        sex: 'girl'</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    const p2 = &#123;</span></span><br><span class="line"><span class="undefined">        name: 'Lee',</span></span><br><span class="line"><span class="undefined">        age: 'cdef',</span></span><br><span class="line"><span class="undefined">        sex: 'girl'</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        class Persion2 extends React.Component&#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            render()&#123;</span></span><br><span class="line"><span class="xml">                return(<span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>姓名：&#123;this.props.name&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>年龄：&#123;this.props.age&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>性别：&#123;this.props.sex&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span>)</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    //2.渲染虚拟dom到页面</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="xml">    //ReactDOM.render(<span class="tag">&lt;<span class="name">Persion</span> <span class="attr">name</span>=<span class="string">&#123;p1.name&#125;</span> <span class="attr">age</span>=<span class="string">&#123;p1.age&#125;</span> <span class="attr">sex</span>=<span class="string">&#123;p1.sex&#125;</span> /&gt;</span>,document.getElementById('man'))</span></span><br><span class="line"><span class="xml">    ReactDOM.render(<span class="tag">&lt;<span class="name">Persion2</span> &#123;<span class="attr">...p1</span>&#125; /&gt;</span>,document.getElementById('man')) //三点运算符</span></span><br><span class="line"><span class="xml">    ReactDOM.render(<span class="tag">&lt;<span class="name">Persion</span> <span class="attr">name</span>=<span class="string">&#123;p2.name&#125;</span> <span class="attr">age</span>=<span class="string">&#123;p2.age&#125;/</span>&gt;</span>,document.getElementById('woman'))</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>打包运算 ...p1即可将p1中的值全部对应赋值给Persion组件/function fn(...list)调用fn(1,2,3) 此时为打包</code></p>
+<h4 id="refs和事件处理"><a href="#refs和事件处理" class="headerlink" title="refs和事件处理"></a>refs和事件处理</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> =<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react-dom.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/babel.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/babel"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    //1.创建虚拟dom</span></span><br><span class="line"><span class="undefined">   class Com extends React.Component&#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">       constructor(props)&#123;</span></span><br><span class="line"><span class="undefined">           super(props)</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">           this.showInput = this.showInput.bind(this)</span></span><br><span class="line"><span class="undefined">           this.handleBlur = this.handleBlur.bind(this)</span></span><br><span class="line"><span class="undefined">           //将组件绑定到函数</span></span><br><span class="line"><span class="undefined">       &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">       handleBlur(event)&#123;</span></span><br><span class="line"><span class="undefined">           alert(event.target.value)</span></span><br><span class="line"><span class="undefined">       &#125;</span></span><br><span class="line"><span class="undefined">       showInput()&#123;</span></span><br><span class="line"><span class="undefined">        const input = this.input</span></span><br><span class="line"><span class="undefined">           alert(input.value)</span></span><br><span class="line"><span class="undefined">       &#125;</span></span><br><span class="line"><span class="undefined">       </span></span><br><span class="line"><span class="undefined">    render()&#123;</span></span><br><span class="line"><span class="undefined">        return(</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">ref</span>=<span class="string">"content"</span>/&gt;</span>&amp;nbsp;&amp;nbsp;</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">ref</span>=<span class="string">&#123;(input)</span> =&gt;</span> this.input = input&#125;/&gt;&amp;nbsp;&amp;nbsp;</span></span><br><span class="line"><span class="undefined">                //dom绑定到组件</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.showInput&#125;</span>&gt;</span>提示输入<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">"失去焦点提示内容"</span> <span class="attr">onBlur</span>=<span class="string">&#123;this.handleBlur&#125;/</span>&gt;</span></span></span><br><span class="line"><span class="undefined">                //事件绑定</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="undefined">        )</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">   &#125;</span></span><br><span class="line"><span class="undefined">    //2.渲染虚拟dom到页面</span></span><br><span class="line"><span class="xml">    ReactDOM.render(<span class="tag">&lt;<span class="name">Com</span>/&gt;</span>,document.getElementById('main'))</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="组件界面开发流程"><a href="#组件界面开发流程" class="headerlink" title="组件界面开发流程"></a>组件界面开发流程</h4><ol>
+<li><strong>拆分组件：拆分界面，抽取组件</strong>，</li>
+<li><strong>实现静态组件：使用组件实现静态页面效果</strong></li>
+<li><strong>实现动态组件</strong><ul>
+<li><strong>动态显示初始化数据</strong></li>
+<li><strong>实现交互功能</strong></li>
+</ul>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">//第一阶段</span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> =<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react-dom.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/babel.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/babel"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    class App extends React.Component&#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        render()&#123;</span></span><br><span class="line"><span class="undefined">            return(</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>This is To Do List<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">Add</span> /&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">List</span> /&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="undefined">            )</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    </span></span><br><span class="line"><span class="undefined">    class Add extends React.Component&#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        render()&#123;</span></span><br><span class="line"><span class="undefined">            return(</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span>/&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt; <span class="attr">button</span>&gt;</span> Add #4<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="undefined">            )</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    class List extends React.Component&#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        render()&#123;</span></span><br><span class="line"><span class="undefined">            return(</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>aaa<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>aaa<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>aaa<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>aaa<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>aaa<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="undefined">            )</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="xml">    ReactDOM.render(<span class="tag">&lt;<span class="name">App</span>/&gt;</span>,document.getElementById('main'))</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react-dom.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/babel.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/prop-types.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/babel"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    class App extends React.Component &#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        /**</span></span><br><span class="line"><span class="undefined">         * 数据需要放在哪个组件，独占数据放到组件，共享数据放到父组件</span></span><br><span class="line"><span class="undefined">         * @returns &#123;*&#125;</span></span><br><span class="line"><span class="undefined">         */</span></span><br><span class="line"><span class="undefined">        constructor(props) &#123;</span></span><br><span class="line"><span class="undefined">            super(props)</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            this.state = &#123;</span></span><br><span class="line"><span class="undefined">                todos: ['eat', 'sleep', 'coding']</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">            this.addTodo = this.addTodo.bind(this)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        addTodo(todo) &#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            const &#123;todos&#125; = this.state</span></span><br><span class="line"><span class="undefined">            todos.unshift(todo)</span></span><br><span class="line"><span class="undefined">            this.setState(&#123;todos&#125;)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        render() &#123;</span></span><br><span class="line"><span class="undefined">            const &#123;todos&#125; = this.state</span></span><br><span class="line"><span class="undefined">            return (</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>This is To Do List<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">Add</span> <span class="attr">count</span>=<span class="string">&#123;todos.length&#125;</span> <span class="attr">addTodo</span>=<span class="string">&#123;this.addTodo&#125;/</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">List</span> <span class="attr">todos</span>=<span class="string">&#123;todos&#125;/</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="undefined">            )</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    class Add extends React.Component &#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        constructor(props) &#123;</span></span><br><span class="line"><span class="undefined">            super(props)</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            this.add = this.add.bind(this)</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        add() &#123;</span></span><br><span class="line"><span class="undefined">            const todo = this.todoInput.value.trim()</span></span><br><span class="line"><span class="undefined">            if (!todo) &#123;</span></span><br><span class="line"><span class="undefined">                alert("不能为空！")</span></span><br><span class="line"><span class="undefined">                return</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">            this.props.addTodo(todo)</span></span><br><span class="line"><span class="undefined">            this.todoInput.value</span></span><br><span class="line"><span class="undefined">            //读取数据</span></span><br><span class="line"><span class="undefined">            //校验数据</span></span><br><span class="line"><span class="undefined">            //添加</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        render() &#123;</span></span><br><span class="line"><span class="undefined">            return (</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">ref</span>=<span class="string">&#123;input</span> =&gt;</span> this.todoInput = input&#125;/&gt;</span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt; <span class="attr">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.add&#125;</span>&gt;</span> Add #&#123;this.props.count + 1&#125;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="undefined">            )</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    Add.propTypes = &#123;</span></span><br><span class="line"><span class="undefined">        count: PropTypes.number.isRequired,</span></span><br><span class="line"><span class="undefined">        addTodo: PropTypes.func.isRequired</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    class List extends React.Component &#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        render() &#123;</span></span><br><span class="line"><span class="undefined">            return (</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    &#123;this.props.todos.map((todo, index) =&gt; <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span>&gt;</span>&#123;todo&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span>)&#125;</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="undefined">            )</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    List.propTypes = &#123;</span></span><br><span class="line"><span class="undefined">        todos: PropTypes.array.isRequired,</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="xml">    ReactDOM.render(<span class="tag">&lt;<span class="name">App</span>/&gt;</span>, document.getElementById('main'))</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">//示例 阻止默认行为  组件取值</span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/react-dom.development.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/babel.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/babel"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    //1.创建虚拟dom</span></span><br><span class="line"><span class="undefined">    class LoginForm extends React.Component &#123;</span></span><br><span class="line"><span class="undefined">        constructor(props) &#123;</span></span><br><span class="line"><span class="undefined">            super(props)</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            this.handleSubmint = this.handleSubmit.bind(this)</span></span><br><span class="line"><span class="undefined">            this.handleChange = this.handleChange.bind(this)</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        handleChange(event) &#123;</span></span><br><span class="line"><span class="undefined">            const pwd = event.target.value</span></span><br><span class="line"><span class="undefined">            this.setState(&#123;pwd&#125;)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        handleSubmit(event) &#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            const name = this.nameInput.value</span></span><br><span class="line"><span class="undefined">            const &#123;pwd&#125; = this.state</span></span><br><span class="line"><span class="undefined">            event.preventDefault()</span></span><br><span class="line"><span class="undefined">            alert(`用户名：$&#123;name&#125;   密码：$&#123;pwd&#125;`)</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        render() &#123;</span></span><br><span class="line"><span class="undefined">            return (</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"/test"</span> <span class="attr">onSubmit</span>=<span class="string">&#123;this.handleSubmint&#125;</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    用户名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">ref</span>=<span class="string">&#123;input</span> =&gt;</span> this.nameInput = input&#125;/&gt;</span></span><br><span class="line"><span class="xml">                    密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">onChange</span>=<span class="string">&#123;this.handleChange&#125;/</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"登录"</span>/&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span></span><br><span class="line"><span class="undefined">            )</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="xml">    ReactDOM.render(<span class="tag">&lt;<span class="name">LoginForm</span>/&gt;</span>, document.getElementById('main'))</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="组件生命周期"><a href="#组件生命周期" class="headerlink" title="组件生命周期"></a>组件生命周期</h3><p><img src="http://i.imgur.com/h5khD9F.png" alt="组件生命周期"></p>
+<ol>
+<li>组件的三个生命周期状态:<ul>
+<li>Mount：插入真实 DOM</li>
+<li>Update：被重新渲染</li>
+<li>Unmount：被移出真实 DOM</li>
+</ul>
+</li>
+<li>生命周期流程:<ul>
+<li>第一次初始化显示: ReactDOM.render(<xxx>, containDom)<ul>
+<li>constructor()</li>
+<li>componentWillMount() : 将要插入回调</li>
+<li>render() : 用于插入虚拟DOM回调</li>
+<li>componentDidMount() : 已经插入回调</li>
+</ul>
+</xxx></li>
+<li>每次更新state: this.setState({})<ul>
+<li>componentWillReceiveProps(): 接收父组件新的属性</li>
+<li>componentWillUpdate() : 将要更新回调</li>
+<li>render() : 更新(重新渲染)</li>
+<li>componentDidUpdate() : 已经更新回调</li>
+</ul>
+</li>
+<li>删除组件: ReactDOM.unmountComponentAtNode(div): 移除组件<ul>
+<li>componentWillUnmount() : 组件将要被移除回调</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>常用的方法<ul>
+<li>render(): 必须重写, 返回一个自定义的虚拟DOM</li>
+<li>constructor(): 初始化状态, 绑定this(可以箭头函数代替)</li>
+<li>componentDidMount() : 只执行一次, 已经在dom树中, 适合启动/设置一些监听</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;Hello&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id="main"&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type="text/javascript" src="../js/react.development.js"&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type="text/javascript" src="../js/react-dom.development.js"&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type="text/javascript" src="../js/babel.min.js"&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/babel"</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Life</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        constructor(props) &#123;</span><br><span class="line">            <span class="keyword">super</span>(props)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">this</span>.state = &#123;</span><br><span class="line">                opacity: <span class="number">1</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">this</span>.distroyComponent = <span class="keyword">this</span>.distroyComponent.bind(<span class="keyword">this</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        distroyComponent() &#123;</span><br><span class="line">            ReactDOM.unmountComponentAtNode(document.getElementById(<span class="string">'main'</span>))</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        componentWillUnmount() &#123;</span><br><span class="line">            clearInterval(<span class="keyword">this</span>.intervalId)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        componentDidMount() &#123;</span><br><span class="line">            <span class="keyword">this</span>.intervalId = setInterval(function () &#123;</span><br><span class="line">                let &#123;opacity&#125; = <span class="keyword">this</span>.state</span><br><span class="line">                console.log(<span class="string">"running"</span>)</span><br><span class="line">                opacity -= <span class="number">0.1</span></span><br><span class="line">                <span class="keyword">if</span> (opacity &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                    opacity = <span class="number">1</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">this</span>.setState(&#123;opacity&#125;)</span><br><span class="line">            &#125;.bind(<span class="keyword">this</span>), <span class="number">200</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//render为渲染</span></span><br><span class="line">        render() &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">const</span> &#123;opacity&#125; = <span class="keyword">this</span>.state</span><br><span class="line">            <span class="keyword">return</span> (</span><br><span class="line">                &lt;div&gt;</span><br><span class="line">                    &lt;h2 style=&#123;&#123;opacity&#125;&#125;&gt;&#123;this.props.msg&#125;&lt;/h2&gt;</span><br><span class="line">                    &lt;button onClick=&#123;this.distroyComponent&#125;&gt;结束&lt;/button&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            )</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ReactDOM.render(&lt;Life msg=<span class="string">"This is Msg"</span>/&gt;, document.getElementById(<span class="string">'main'</span>))</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="虚拟DOM与DOM-Diff算法"><a href="#虚拟DOM与DOM-Diff算法" class="headerlink" title="虚拟DOM与DOM Diff算法"></a>虚拟DOM与DOM Diff算法</h3><h4 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h4><p>一个虚拟DOM(元素)是一个一般的js对象, 准确的说是一个对象树(倒立的)<br>虚拟DOM保存了真实DOM的层次关系和一些基本属性，与真实DOM一一对应<br>如果只是更新虚拟DOM, 页面是不会重绘的</p>
+<h4 id="Virtual-DOM-算法的基本步骤"><a href="#Virtual-DOM-算法的基本步骤" class="headerlink" title="Virtual DOM 算法的基本步骤"></a>Virtual DOM 算法的基本步骤</h4><p>用JS对象树表示DOM树的结构；然后用这个树构建一个真正的DOM树插到文档当中<br>当状态变更的时候，重新构造一棵新的对象树。然后用新的树和旧的树进行比较，记录两棵树差异<br>把差异应用到真实DOM树上，视图就更新了</p>
+<h4 id="进一步理解"><a href="#进一步理解" class="headerlink" title="进一步理解"></a>进一步理解</h4><p>Virtual DOM 本质上就是在 JS 和 DOM 之间做了一个缓存。<br>可以类比 CPU 和硬盘，既然硬盘这么慢，我们就在它们之间加个缓存：既然 DOM 这么慢，我们就在它们 JS 和 DOM 之间加个缓存。CPU（JS）只操作内存（Virtual DOM），最后的时候再把变更写入硬盘（DOM）。<br><img src="http://i.imgur.com/psaZdqN.png" alt=""></p>
+<h2 id="脚手架"><a href="#脚手架" class="headerlink" title="脚手架"></a>脚手架</h2><p>创建项目模板，模板中包含了所有需要的配置，预先设置了依赖，可以直接安装、编译、运行。</p>
+<p>官方提供一个<code>create-react-app</code>脚手架库，技术栈为<code>react+webpack+es6+eslint</code>。</p>
+<p>脚手架开发方式创建项目具有模块化、组件化、工程化等特点。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm install create-react-app</span><br><span class="line"></span><br><span class="line">create-react-app [project_name]</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> [project_name]</span><br><span class="line"></span><br><span class="line">npm (run) start</span><br></pre></td></tr></table></figure>
+<h3 id="入口"><a href="#入口" class="headerlink" title="入口"></a>入口</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.js</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./components/app'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'./index.css'</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span> ,document.getElementById('root'))</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">//index.html</span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1, shrink-to-fit=no"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"theme-color"</span> <span class="attr">content</span>=<span class="string">"#000000"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">      manifest.json provides metadata used when your web app is added to the</span></span><br><span class="line"><span class="comment">      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"manifest"</span> <span class="attr">href</span>=<span class="string">"%PUBLIC_URL%/manifest.json"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"shortcut icon"</span> <span class="attr">href</span>=<span class="string">"%PUBLIC_URL%/favicon.ico"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">      Notice the use of %PUBLIC_URL% in the tags above.</span></span><br><span class="line"><span class="comment">      It will be replaced with the URL of the `public` folder during the build.</span></span><br><span class="line"><span class="comment">      Only files inside the `public` folder can be referenced from the HTML.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will</span></span><br><span class="line"><span class="comment">      work correctly both with client-side routing and a non-root public URL.</span></span><br><span class="line"><span class="comment">      Learn how to configure a non-root public URL by running `npm run build`.</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>React App<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">noscript</span>&gt;</span></span><br><span class="line">      You need to enable JavaScript to run this app.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">noscript</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"root"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">      This HTML file is a template.</span></span><br><span class="line"><span class="comment">      If you open it directly in the browser, you will see an empty page.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">      You can add webfonts, meta tags, or analytics to this file.</span></span><br><span class="line"><span class="comment">      The build step will place the bundled scripts into the &lt;body&gt; tag.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">      To begin the development, run `npm start` or `yarn start`.</span></span><br><span class="line"><span class="comment">      To create a production bundle, use `npm run build` or `yarn build`.</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="组件-1"><a href="#组件-1" class="headerlink" title="组件"></a>组件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React,&#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> log <span class="keyword">from</span> <span class="string">'../logo.svg'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">         &lt;div&gt;</span><br><span class="line">            &lt;img className=<span class="string">"logo"</span>  src=&#123;log&#125; alt=<span class="string">"This is image"</span>/&gt;</span><br><span class="line">             &lt;p className=<span class="string">"title"</span>&gt;这是一个组件&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">         &lt;/</span>div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//export default App</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p><img src="/2017/09/16/React/1536819570662.png" alt="1536819570662"></p>
+<ol>
+<li>拆分组件</li>
+<li>实现静态页面、静态数据展示</li>
+<li>完成数据交互、动态数据显示</li>
+</ol>
+<p><code>https://github.com/wan9huan/practice_react/tree/master/react_app</code></p>
+<h2 id="Ajax请求"><a href="#Ajax请求" class="headerlink" title="Ajax请求"></a>Ajax请求</h2><p>React是一款专注前端的框架，本身不支持ajax，使用ajax功能，需要引入第三方库。</p>
+<h3 id="常用工具"><a href="#常用工具" class="headerlink" title="常用工具"></a>常用工具</h3><ol>
+<li>Jquery：大型的js库，不建议使用</li>
+<li><a href="https://github/axios/axios" target="_blank" rel="noopener">axios</a>：轻量级，使用xmr封装对象的ajx，promis风格，前后端均可使用</li>
+<li>fetch：原生函数，不兼容低版本浏览器，不适用xmr方式，也可引入fetch.js使之兼容</li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"https://cdn.bootcss.com/axios/0.18.0/axios.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">   &lt;script type=<span class="string">"text/babel"</span>&gt;</span><br><span class="line">   </span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">Ajax</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line"></span><br><span class="line">       state =&#123;</span><br><span class="line">           repoName:<span class="string">''</span>,</span><br><span class="line">           repoUrl:<span class="string">''</span></span><br><span class="line">       &#125;</span><br><span class="line">       componentDidMount()&#123;</span><br><span class="line">           <span class="keyword">const</span> url = <span class="string">`https://api.github.com/search/repositories?q=r&amp;sort=stars&amp;order=desc`</span></span><br><span class="line">           <span class="comment">//发送axios的ajax请求 </span></span><br><span class="line">           axios.get(url).then(<span class="function"><span class="params">response</span> =&gt;</span>&#123;</span><br><span class="line">           <span class="keyword">const</span> result = response.data</span><br><span class="line">           <span class="built_in">console</span>.log(result)</span><br><span class="line"></span><br><span class="line">           <span class="keyword">const</span>&#123;name,html_url&#125; = result.items[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">           <span class="keyword">this</span>.setState(&#123;<span class="attr">repoName</span>: name,<span class="attr">repoUrl</span>: html_url&#125;)</span><br><span class="line">           &#125;)</span><br><span class="line">         <span class="comment">//fetch</span></span><br><span class="line">         fetch(url)</span><br><span class="line">           .then(<span class="function"><span class="params">response</span> =&gt;</span>&#123;</span><br><span class="line">           <span class="keyword">return</span> reposponse.json()</span><br><span class="line">         &#125;)</span><br><span class="line">           .then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">           </span><br><span class="line">            <span class="keyword">const</span>&#123;name,html_url&#125; = data.items[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">           <span class="keyword">this</span>.setState(&#123;<span class="attr">repoName</span>: name,<span class="attr">repoUrl</span>: html_url&#125;)</span><br><span class="line">         &#125;)</span><br><span class="line">       &#125;</span><br><span class="line">       render()&#123;</span><br><span class="line">           <span class="keyword">const</span> &#123;repoName,repoUrl&#125; = <span class="keyword">this</span>.state</span><br><span class="line">           <span class="keyword">if</span>(!repoName)&#123;</span><br><span class="line">               <span class="keyword">return</span>  <span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Loading ......<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">else</span>&#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>最受欢迎的项目是<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#123;repoUrl&#125;</span> &gt;</span>&#123;repoName&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">   ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">Ajax</span> /&gt;</span>,document.getElementById('dom1'))</span></span><br><span class="line"><span class="xml">   <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">    axios.get(url)</span><br><span class="line">        .then(<span class="function"><span class="params">response</span> =&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> result = response.data</span><br><span class="line">        <span class="built_in">console</span>.log(result)        </span><br><span class="line">        <span class="keyword">const</span>&#123;name,html_url&#125; = result.items[<span class="number">0</span>]       </span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;<span class="attr">repoName</span>: name,<span class="attr">repoUrl</span>: html_url&#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">        .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(error.message)</span><br><span class="line">        &#125;)</span><br><span class="line"><span class="comment">//fetch</span></span><br><span class="line"><span class="comment">//   fetch(url)</span></span><br><span class="line"><span class="comment">//     .then(response =&gt;&#123;</span></span><br><span class="line"><span class="comment">//     return response.json()</span></span><br><span class="line"><span class="comment">//   &#125;)</span></span><br><span class="line"><span class="comment">//     .then(data =&gt; &#123;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//      const&#123;name,html_url&#125; = data.items[0]</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//     this.setState(&#123;repoName: name,repoUrl: html_url&#125;)</span></span><br><span class="line"><span class="comment">//   &#125;)</span></span><br></pre></td></tr></table></figure>
+<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//app.js</span></span><br><span class="line"><span class="keyword">import</span> React,&#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> Search <span class="keyword">from</span> <span class="string">'./search'</span></span><br><span class="line"><span class="keyword">import</span> Main <span class="keyword">from</span> <span class="string">'./main'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    state=&#123;</span><br><span class="line">        searchName: <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    setSearchName = <span class="function">(<span class="params">searchName</span>) =&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;searchName&#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;div className=<span class="string">"container"</span>&gt;</span><br><span class="line">                &lt;Search setSearchName=&#123;<span class="keyword">this</span>.setSearchName&#125;/&gt;</span><br><span class="line">                &lt;Main searchName=&#123;<span class="keyword">this</span>.state.searchName&#125;/&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;)</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/export default App</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//search.js</span></span><br><span class="line"><span class="keyword">import</span> React,&#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> PropTypes <span class="keyword">from</span> <span class="string">'prop-types'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Search</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> propTypes = &#123;</span><br><span class="line">        setSearchName: PropTypes.func.isRequired</span><br><span class="line">    &#125;</span><br><span class="line">    search = <span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">        <span class="comment">//获取关键字</span></span><br><span class="line">       <span class="keyword">const</span> searchName = <span class="keyword">this</span>.input.value.trim()</span><br><span class="line">        <span class="keyword">if</span>(searchName)&#123;</span><br><span class="line">            <span class="keyword">this</span>.props.setSearchName(searchName)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//搜索</span></span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">        &lt;section className=<span class="string">"jumbotron"</span>&gt;</span><br><span class="line">            &lt;h3 className=<span class="string">"jumbotron-heading"</span>&gt;Search Github Users&lt;<span class="regexp">/h3&gt;</span></span><br><span class="line"><span class="regexp">            &lt;div&gt;</span></span><br><span class="line"><span class="regexp">                &lt;input type="text" placeholder="enter the name you search" ref=&#123;input =&gt; this.input=input&#125;/</span>&gt;</span><br><span class="line">                &lt;button onClick=&#123;<span class="keyword">this</span>.search&#125;&gt;Search&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;</span><br><span class="line">        &lt;<span class="regexp">/section&gt;)</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/export default Search</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//mian.js</span></span><br><span class="line"><span class="keyword">import</span> React, &#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> PropTypes <span class="keyword">from</span> <span class="string">'prop-types'</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> propTypes = &#123;</span><br><span class="line">            searchName: PropTypes.string.isRequired</span><br><span class="line">    &#125;</span><br><span class="line">    state= &#123;</span><br><span class="line">        initView: <span class="literal">true</span>,</span><br><span class="line">        loading: <span class="literal">false</span>,</span><br><span class="line">        users: <span class="literal">null</span>,</span><br><span class="line">        errorMsg: <span class="literal">null</span>,</span><br><span class="line">        items:<span class="string">''</span>,</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//接收新属性调用</span></span><br><span class="line">    componentWillReceiveProps(newProps)&#123;</span><br><span class="line">        <span class="comment">//发送请求</span></span><br><span class="line">        <span class="keyword">const</span> &#123;searchName&#125; = newProps</span><br><span class="line">        <span class="comment">//更新状态</span></span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">            initView:<span class="literal">false</span>,</span><br><span class="line">            loading:<span class="literal">true</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">const</span> url = <span class="string">`https://api.github.com/search/users?q=<span class="subst">$&#123;searchName&#125;</span>`</span></span><br><span class="line">        axios.get(url)</span><br><span class="line">            .then(<span class="function"><span class="params">response</span> =&gt;</span>&#123;</span><br><span class="line">                <span class="comment">//取数据</span></span><br><span class="line">                <span class="keyword">const</span> result = response.data</span><br><span class="line">                <span class="keyword">const</span> users =  result.items.map(<span class="function"><span class="params">item</span> =&gt;</span> (&#123;<span class="attr">name</span>:item.login,<span class="attr">url</span>:item.html_url,<span class="attr">avatarUrl</span>:item.avatar_url&#125;))</span><br><span class="line">                <span class="keyword">this</span>.setState(&#123;<span class="attr">loading</span>:<span class="literal">false</span>,users&#125;)</span><br><span class="line">                <span class="built_in">console</span>.log(result)</span><br><span class="line">                <span class="comment">//更新状态</span></span><br><span class="line">            &#125;)</span><br><span class="line">            .catch(<span class="function"><span class="params">error</span> =&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">const</span>&#123;initView,loading,users,errorMsg&#125; = <span class="keyword">this</span>.state</span><br><span class="line">        <span class="keyword">if</span>(initView)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span> 请进行搜索 <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(loading)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>正在加载中...<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(errorMsg)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;errorMsg&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">        &#125;<span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div className=<span class="string">"row"</span>&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    users.map(<span class="function">(<span class="params">user,index</span>) =&gt;</span> (</span><br><span class="line">                        &lt;div className=<span class="string">"card"</span> key=&#123;index&#125;&gt;</span><br><span class="line">                            &lt;a href=&#123;user.url&#125; target=<span class="string">"_blank"</span>&gt;</span><br><span class="line">                                &lt;img src=&#123;user.avatarUrl&#125; style=&#123;&#123;<span class="attr">width</span>: <span class="number">100</span>&#125;&#125; alt=<span class="string">"img"</span>/&gt;</span><br><span class="line">                            &lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">                            &lt;p className="card-text"&gt;&#123;user.name&#125;&lt;/</span>p&gt;</span><br><span class="line">                        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">                    ))</span></span><br><span class="line"><span class="regexp">                &#125;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//export default Main</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.js</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./components/app'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'./index.css'</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span> ,document.getElementById('root'))</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#index</span><span class="selector-class">.css</span></span><br><span class="line"><span class="selector-class">.album</span> &#123;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">50rem</span>; <span class="comment">/* Can be removed; just added for demo purposes */</span></span><br><span class="line">    <span class="attribute">padding-top</span>: <span class="number">3rem</span>;</span><br><span class="line">    <span class="attribute">padding-bottom</span>: <span class="number">3rem</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#f7f7f7</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.card</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">33.333%</span>;</span><br><span class="line">    <span class="attribute">padding</span>: .<span class="number">75rem</span>;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">2rem</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#efefef</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.card</span> &gt; <span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: .<span class="number">75rem</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.card-text</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">85%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="组件数据传递"><a href="#组件数据传递" class="headerlink" title="组件数据传递"></a>组件数据传递</h2><h3 id="props-1"><a href="#props-1" class="headerlink" title="props"></a>props</h3><ol>
+<li>需要共同使用的数据，存放在父组件中，当前组件特有的数据放在组件state中</li>
+<li>可以传递普通数据和函数数据，只能按层传递</li>
+<li>数据 –》  父到子 –》  子读取</li>
+<li>函数 –》 子函数传递参数到父 –》 子调用函数</li>
+<li>兄弟组件的参数传递必须借助父组件进行传递</li>
+</ol>
+<h3 id="订阅与发布"><a href="#订阅与发布" class="headerlink" title="订阅与发布"></a>订阅与发布</h3><p><a href="https://github.com/mroderick/PubSubJS" target="_blank" rel="noopener">PubSubJs</a></p>
+<p>将数据进行发布，在使用的地方订阅即可使用数据。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PubSub.publish(<span class="string">'search'</span>,searchName)</span><br><span class="line">PubSub.subscribe(<span class="string">'search'</span>,(msg,searchName) =&gt;&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`使用数据<span class="subst">$&#123;searchName&#125;</span>`</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h3><p>这个也是比较常用的数据传递方式，整合redux使用是很便捷的，后面继续详解。</p>
+<h2 id="react-router"><a href="#react-router" class="headerlink" title="react-router"></a><a href="https://reacttraining.com/react-router/" target="_blank" rel="noopener">react-router</a></h2><p>一个react的插件库，创建基于react的单页web应用。</p>
+<h3 id="SPA"><a href="#SPA" class="headerlink" title="SPA"></a>SPA</h3><ol>
+<li>Sigle page web application,SPA     麻萨吉</li>
+<li>整个应用只有一个完整的页面</li>
+<li>点击页面中的链接不会刷新页面，也不会发送请求页面的请求</li>
+<li>点击链接（链接都是路由链接）之后对当前页面进行局部刷新</li>
+<li>数据都是通过ajax请求获取的，并在前端异步展现（异步展现？）</li>
+</ol>
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><p>映射关系，kv值，(path: func/component),例如（path,fun(req,res)）。</p>
+<p><strong>后台路由</strong></p>
+<p>node服务端路由，value是function，用来处理客户端提交的请求并返回一个响应数据。</p>
+<p>注册方式：router.get(path,function(req,res))</p>
+<p>当服务器端接收到请求时，调用路由中的函数，处理请求并返回数据。</p>
+<p><strong>前台路由</strong></p>
+<p>浏览器端路由，value是component，当请求是路由path时，浏览器端不会发送http请求，但界面会进行更新展示为对应的组件。</p>
+<p>注册方式：<route path="/info" component="{Info}"></route></p>
+<p>当浏览器的hash变为#info时，当前的页面组件就会变成Info组件</p>
+<h3 id="组件-2"><a href="#组件-2" class="headerlink" title="组件"></a>组件</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;BrowerRouter&gt;</span><br><span class="line"></span><br><span class="line">&lt;HashRouter&gt;</span><br><span class="line"></span><br><span class="line">&lt;Route&gt;</span><br><span class="line"></span><br><span class="line">&lt;Redirect&gt;</span><br><span class="line"></span><br><span class="line">&lt;Link&gt;</span><br><span class="line"></span><br><span class="line">&lt;NavLink&gt;</span><br><span class="line"></span><br><span class="line">&lt;Switch&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React/" rel="tag"># React</a>
+          
+            <a href="/tags/示例演示/" rel="tag"># 示例演示</a>
+          
+            <a href="/tags/组件编写/" rel="tag"># 组件编写</a>
+          
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/01/设计模式/" rel="next" title="设计模式">
+                <i class="fa fa-chevron-left"></i> 设计模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/19/Spring-使用方法/" rel="prev" title="Spring 使用方法">
+                Spring 使用方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="W@n9" />
+            
+              <p class="site-author-name" itemprop="name">W@n9</p>
+              <p class="site-description motion-element" itemprop="description">Their feathers are just too bright.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1958862281@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖"><span class="nav-number">1.1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hello"><span class="nav-number">1.2.</span> <span class="nav-text">hello</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSX"><span class="nav-number">1.3.</span> <span class="nav-text">JSX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">1.4.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">1.5.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块化"><span class="nav-number">1.6.</span> <span class="nav-text">模块化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件化"><span class="nav-number">1.7.</span> <span class="nav-text">组件化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向组件编程"><span class="nav-number">2.</span> <span class="nav-text">面向组件编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#组件"><span class="nav-number">2.1.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件属性"><span class="nav-number">2.2.</span> <span class="nav-text">组件属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#state"><span class="nav-number">2.2.1.</span> <span class="nav-text">state</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#props"><span class="nav-number">2.2.2.</span> <span class="nav-text">props</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#refs和事件处理"><span class="nav-number">2.2.3.</span> <span class="nav-text">refs和事件处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件界面开发流程"><span class="nav-number">2.2.4.</span> <span class="nav-text">组件界面开发流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件生命周期"><span class="nav-number">2.3.</span> <span class="nav-text">组件生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟DOM与DOM-Diff算法"><span class="nav-number">2.4.</span> <span class="nav-text">虚拟DOM与DOM Diff算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟DOM"><span class="nav-number">2.4.1.</span> <span class="nav-text">虚拟DOM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Virtual-DOM-算法的基本步骤"><span class="nav-number">2.4.2.</span> <span class="nav-text">Virtual DOM 算法的基本步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进一步理解"><span class="nav-number">2.4.3.</span> <span class="nav-text">进一步理解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脚手架"><span class="nav-number">3.</span> <span class="nav-text">脚手架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#入口"><span class="nav-number">3.1.</span> <span class="nav-text">入口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件-1"><span class="nav-number">3.2.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">3.3.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ajax请求"><span class="nav-number">4.</span> <span class="nav-text">Ajax请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用工具"><span class="nav-number">4.1.</span> <span class="nav-text">常用工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-1"><span class="nav-number">4.2.</span> <span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件数据传递"><span class="nav-number">5.</span> <span class="nav-text">组件数据传递</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#props-1"><span class="nav-number">5.1.</span> <span class="nav-text">props</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#订阅与发布"><span class="nav-number">5.2.</span> <span class="nav-text">订阅与发布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redux"><span class="nav-number">5.3.</span> <span class="nav-text">redux</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react-router"><span class="nav-number">6.</span> <span class="nav-text">react-router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SPA"><span class="nav-number">6.1.</span> <span class="nav-text">SPA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由"><span class="nav-number">6.2.</span> <span class="nav-text">路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件-2"><span class="nav-number">6.3.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-2"><span class="nav-number">6.4.</span> <span class="nav-text">示例</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">W@n9</span>
+  <br>
+  <div class="powered-by"> <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 本站访客数:<span id="busuanzi_value_site_uv"></span></span>
+                                                       <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></div>
+  
+
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'UbJtdVwoawlqEf5yKO8dGq7W-gzGzoHsz',
+        appKey: '5nOMvhOssjkxUdFg81zDVoWv',
+        placeholder: '评论留下联系方式，我知道你缺一个好辅助，我主W',
+        avatar:'retro',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":200},"mobile":{"show":true},"log":false});</script></body>
+</html>

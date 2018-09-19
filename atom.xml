@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wan9huan.github.io/"/>
-  <updated>2018-09-18T12:55:14.421Z</updated>
+  <updated>2018-09-19T12:43:51.927Z</updated>
   <id>https://wan9huan.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux</title>
+    <link href="https://wan9huan.github.io/2018/09/19/Linux/"/>
+    <id>https://wan9huan.github.io/2018/09/19/Linux/</id>
+    <published>2018-09-19T07:13:53.000Z</published>
+    <updated>2018-09-19T12:43:51.927Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Linux 常用操作&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="操作系统" scheme="https://wan9huan.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="Linux" scheme="https://wan9huan.github.io/tags/Linux/"/>
+    
+      <category term="使用操作" scheme="https://wan9huan.github.io/tags/%E4%BD%BF%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
+    
+      <category term="命令演示" scheme="https://wan9huan.github.io/tags/%E5%91%BD%E4%BB%A4%E6%BC%94%E7%A4%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Cloud</title>
@@ -147,6 +171,32 @@
       <category term="AOP" scheme="https://wan9huan.github.io/tags/AOP/"/>
     
       <category term="IOC" scheme="https://wan9huan.github.io/tags/IOC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>React</title>
+    <link href="https://wan9huan.github.io/2017/09/16/React/"/>
+    <id>https://wan9huan.github.io/2017/09/16/React/</id>
+    <published>2017-09-16T00:38:05.000Z</published>
+    <updated>2018-09-19T04:50:53.386Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;用于构建用户界面的JavaScript库，声明式、组件化、一次学习，随处编写，高效，单向数据流，使用虚拟dom及Dom Diff算法最小化页面重绘。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="前端框架" scheme="https://wan9huan.github.io/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/"/>
+    
+    
+      <category term="React" scheme="https://wan9huan.github.io/tags/React/"/>
+    
+      <category term="示例演示" scheme="https://wan9huan.github.io/tags/%E7%A4%BA%E4%BE%8B%E6%BC%94%E7%A4%BA/"/>
+    
+      <category term="组件编写" scheme="https://wan9huan.github.io/tags/%E7%BB%84%E4%BB%B6%E7%BC%96%E5%86%99/"/>
+    
+      <category term="ES6" scheme="https://wan9huan.github.io/tags/ES6/"/>
     
   </entry>
   
