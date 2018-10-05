@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wan9huan.github.io/"/>
-  <updated>2018-10-01T04:26:34.443Z</updated>
+  <updated>2018-10-03T03:29:28.059Z</updated>
   <id>https://wan9huan.github.io/</id>
   
   <author>
@@ -17,15 +17,45 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JavaScript</title>
+    <link href="https://wan9huan.github.io/2018/10/02/JavaScript/"/>
+    <id>https://wan9huan.github.io/2018/10/02/JavaScript/</id>
+    <published>2018-10-02T01:20:44.000Z</published>
+    <updated>2018-10-03T03:29:28.059Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;JavaScript&quot;&gt;&lt;a href=&quot;#JavaScript&quot; class=&quot;headerlink&quot; title=&quot;JavaScript&quot;&gt;&lt;/a&gt;JavaScript&lt;/h1&gt;&lt;h2 id=&quot;数据类型&quot;&gt;&lt;a href=&quot;#数据类型&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="“前端技术”" scheme="https://wan9huan.github.io/categories/%E2%80%9C%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF%E2%80%9D/"/>
+    
+    
+      <category term="JS" scheme="https://wan9huan.github.io/tags/JS/"/>
+    
+      <category term="高级" scheme="https://wan9huan.github.io/tags/%E9%AB%98%E7%BA%A7/"/>
+    
+      <category term="编程" scheme="https://wan9huan.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>node.js</title>
     <link href="https://wan9huan.github.io/2018/10/01/node-js/"/>
     <id>https://wan9huan.github.io/2018/10/01/node-js/</id>
     <published>2018-10-01T00:59:37.000Z</published>
-    <updated>2018-10-01T04:26:34.443Z</updated>
+    <updated>2018-10-01T04:40:19.522Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Node-js&quot;&gt;&lt;a href=&quot;#Node-js&quot; class=&quot;headerlink&quot; title=&quot;Node.js&quot;&gt;&lt;/a&gt;Node.js&lt;/h1&gt;&lt;p&gt;Node.js是一个Javascript运行环境(runtime environment)，发布于2009年5月，由Ryan Dahl开发，实质是&lt;strong&gt;对Chrome V8引擎进行了封装&lt;/strong&gt;。Node.js 不是一个 JavaScript 框架，不同于CakePHP、Django、Rails。Node.js 更不是浏览器端的库，不能与 jQuery、ExtJS 相提并论。Node.js 是一个让 &lt;strong&gt;JavaScript 运行在服务端&lt;/strong&gt;的开发平台，它让 JavaScript 成为与PHP、Python、Perl、Ruby 等服务端语言平起平坐的脚本语言。&lt;br&gt;Node.js对一些特殊用例进行优化，提供替代的API，使得V8在非浏览器环境下运行得更好。V8引擎执行Javascript的速度非常快，性能非常好。Node.js是一个基于Chrome JavaScript运行时建立的平台， 用于方便地搭建响应速度快、易于扩展的网络应用。Node.js 使用&lt;strong&gt;事件驱动， 非阻塞I/O 模型&lt;/strong&gt;而得以轻量和高效，非常适合在分布式设备上运行数据密集型的实时应用。&lt;/p&gt;
+      &lt;h1 id=&quot;Node-js&quot;&gt;&lt;a href=&quot;#Node-js&quot; class=&quot;headerlink&quot; title=&quot;Node.js&quot;&gt;&lt;/a&gt;Node.js&lt;/h1&gt;&lt;p&gt;Node.js是一个Javascript运行环境(runtime environment)，发布于2009年5月，由Ryan Dahl开发，实质是&lt;strong&gt;对Chrome V8引擎进行了封装&lt;/strong&gt;。Node.js 不是一个 JavaScript 框架，不同于CakePHP、Django、Rails。Node.js 更不是浏览器端的库，不能与 jQuery、ExtJS 相提并论。Node.js 是一个让 &lt;strong&gt;JavaScript 运行在服务端&lt;/strong&gt;的开发平台，它让 JavaScript 成为与PHP、Python、Perl、Ruby 等服务端语言平起平坐的脚本语言。 &lt;/p&gt;
     
     </summary>
     
@@ -45,7 +75,7 @@
     <link href="https://wan9huan.github.io/2018/09/19/Linux/"/>
     <id>https://wan9huan.github.io/2018/09/19/Linux/</id>
     <published>2018-09-19T07:13:53.000Z</published>
-    <updated>2018-09-28T09:16:57.838Z</updated>
+    <updated>2018-10-05T05:14:19.534Z</updated>
     
     <summary type="html">
     

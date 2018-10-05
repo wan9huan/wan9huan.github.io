@@ -286,6 +286,234 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wan9huan.github.io/2018/10/02/JavaScript/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="W@n9">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leon">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/02/JavaScript/" itemprop="url">JavaScript</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-02T09:20:44+08:00">
+                2018-10-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/“前端技术”/" itemprop="url" rel="index">
+                    <span itemprop="name">“前端技术”</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/02/JavaScript/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/02/JavaScript/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><ol>
+<li>String：任意字符串</li>
+<li>Number：任意数字</li>
+<li>boolean：true/false</li>
+<li>undefined：undefined</li>
+<li>null：null</li>
+</ol>
+<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><ol>
+<li>Object：任意对象</li>
+<li>Function：可执行对象</li>
+<li>Array：数组类型，下标访问</li>
+</ol>
+<h3 id="判断类型"><a href="#判断类型" class="headerlink" title="判断类型"></a>判断类型</h3><ol>
+<li>typeof：类型判断。undefined/数值/字符串/布尔值</li>
+<li>instanceof：判断对象是否为某个类型 a instanceof Object</li>
+<li>===：判断引用是否为完全相等，即指向同一个地址</li>
+</ol>
+<h2 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h2><p>JavaScript的内存模型中包含堆栈，对象的引用存储在栈中，堆中存储了对象的实例。加载代码到内存中，同样包含一个方法区。</p>
+<p><img src="/2018/10/02/JavaScript/内存模型.png" alt=""></p>
+<p>分配内存 -&gt; 存储数据 -&gt; 释放内存。局部变量在执行完成后自动释放，对象在没有引用的情况下会被垃圾回收。</p>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>对象可以封装多个数据，一个对象代表一个事物的抽象，统一管理多个数据。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> car = &#123;</span><br><span class="line">    name:<span class="string">'BMW'</span>,</span><br><span class="line">    price:<span class="string">'100w'</span>,</span><br><span class="line">    setName:<span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;,</span><br><span class="line">    setPrice:<span class="function"><span class="keyword">function</span>(<span class="params">price</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.price = price</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//方法认为是一种特别的属性</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">car.setName(<span class="string">"宝马"</span>);</span><br><span class="line">car.setPrice(<span class="string">"100万"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(car.name);</span><br><span class="line"></span><br><span class="line">car[<span class="string">'setName'</span>](<span class="string">"奔驰"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(car[<span class="string">'name'</span>]);</span><br></pre></td></tr></table></figure>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//直接调用</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">check</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (num &lt; <span class="number">60</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"不及格！"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(num&gt;=<span class="number">60</span>&amp;&amp;num&lt;<span class="number">90</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"中等！"</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">90</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"优秀！"</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;<span class="built_in">console</span>.log(<span class="string">"错误！"</span>)&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">check(<span class="number">60</span>);</span><br><span class="line">check(<span class="number">80</span>);</span><br><span class="line">check(<span class="number">90</span>);</span><br><span class="line">check(<span class="string">"a"</span>);</span><br><span class="line"><span class="comment">//对象调用</span></span><br><span class="line"><span class="keyword">var</span> obj =&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">"name"</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"this is a function!"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn.call(obj);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj.name)</span><br></pre></td></tr></table></figure>
+<h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><p>事件回调函数、定时器回调函数、ajax请求回调函数、声明周期回调函数</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span> = <span class="string">"btn"</span>&gt;</span>按钮测试！<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>).onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        alert(<span class="keyword">this</span>.innerHTML)</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 事件回调</span></span></span><br><span class="line"><span class="javascript">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        alert(<span class="string">"Time out"</span>),<span class="number">2000</span></span></span><br><span class="line"><span class="undefined">    &#125;)</span></span><br><span class="line"><span class="javascript">  	<span class="comment">//定时器回调</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="IIFE"><a href="#IIFE" class="headerlink" title="IIFE"></a>IIFE</h2><p>Immediatel-Invoked Function Expression：立即执行函数表达式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"立即执行函数！"</span>)</span><br><span class="line">&#125;)()</span><br><span class="line"><span class="comment">//匿名函数自调用</span></span><br></pre></td></tr></table></figure>
+<h2 id="this指针"><a href="#this指针" class="headerlink" title="this指针"></a>this指针</h2><ol>
+<li>全局：window</li>
+<li>函数内部：指向当前函数对象</li>
+<li>调用：指向调用者</li>
+</ol>
+<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>每个函数都有一个prototype属性，这个属性默认指向一个空Object对象，对象中包括一个构造器函数(constructor),prototype对象中包括了很多操作的方法，类似于类构造，这个对象中包含了很多方法。当一个对象属于某一类对象的时候，它会拥有一个原型属性，这个属性中包括了这一类对象的所有方法。类似于继承。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(fn.prototype)</span><br><span class="line"><span class="comment">//fn.prototype即为原型对象</span></span><br><span class="line"><span class="built_in">console</span>.log(fn.prototype.constructor===fn)</span><br><span class="line"><span class="comment">//构造器指向函数本身</span></span><br></pre></td></tr></table></figure>
+<h3 id="显式原型"><a href="#显式原型" class="headerlink" title="显式原型"></a>显式原型</h3><p>上面描述的属性即为函数的显式原型。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">abc</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(abc.prototype)</span><br></pre></td></tr></table></figure>
+<h3 id="隐式原型"><a href="#隐式原型" class="headerlink" title="隐式原型"></a>隐式原型</h3><p>实例对象将包含一个隐式原型，即实例过后的对象将包含一个_proto_属性，其值对行为其构造函数的显式原型值，即实例化对象指向原型对象。</p>
+<p>简单理解，这两个原型，显式原型是函数定义就指向的原型对象，类似Java中的父类，而隐式原型是实例后的属性，同样也指向父函数。原型对象中的方法，可以在实例对象中直接进行调用，而其调用方法是通过隐式原型属性获取到了父对象的方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fn.prototype  指向某个对象  <span class="built_in">Object</span></span><br><span class="line">fn._proto_    指向某个对象  <span class="built_in">Object</span></span><br></pre></td></tr></table></figure>
+<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><p><img src="/2018/10/02/JavaScript/原型模式.png" alt="1538533188054"></p>
+<p>执行方法是，现在实例中寻找，再到隐式原型寻找，再到运行对象寻找，寻找方法会沿着隐式原型一直寻找到Object对象。</p>
+<p><img src="/2018/10/02/JavaScript/原型链.png" alt="1538534521108"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">A.prototype.n = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> A()</span><br><span class="line"></span><br><span class="line">A.prototype = &#123;</span><br><span class="line">  n:<span class="number">2</span>,</span><br><span class="line">  m:<span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> A()</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(b.n,b.m,c.n,c.m)</span><br><span class="line">    </span><br><span class="line"># 1 undefined 2 3</span><br></pre></td></tr></table></figure>
+<h2 id="上下文"><a href="#上下文" class="headerlink" title="上下文"></a>上下文</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">3</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a)</span><br><span class="line">  <span class="keyword">var</span> a =<span class="number">4</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn()</span><br><span class="line"># undefined</span><br></pre></td></tr></table></figure>
+<p>变量提升，在执行输出语句之前，变量a就已经声明了，只是没有进行赋值，所有结果是undefined，函数也具有这样的特性。</p>
+<p>代码分为全局代码和函数代码。</p>
+<h2 id="全局执行"><a href="#全局执行" class="headerlink" title="全局执行"></a>全局执行</h2><ol>
+<li>代码分类(位置)<ul>
+<li>全局代码</li>
+<li>函数(局部)代码</li>
+</ul>
+</li>
+<li>全局执行上下文<ul>
+<li>在执行全局代码前将window确定为全局执行上下文</li>
+<li>对全局数据进行预处理<ul>
+<li>var定义的全局变量==&gt;undefined, 添加为window的属性</li>
+<li>function声明的全局函数==&gt;赋值(fun), 添加为window的方法</li>
+<li>this==&gt;赋值(window)</li>
+</ul>
+</li>
+<li>开始执行全局代码</li>
+</ul>
+</li>
+<li>函数执行上下文<ul>
+<li>在调用函数, 准备执行函数体之前, 创建对应的函数执行上下文对象(虚拟的, 存在于栈中)</li>
+<li>对局部数据进行预处理<ul>
+<li>形参变量==&gt;赋值(实参)==&gt;添加为执行上下文的属性</li>
+<li>arguments==&gt;赋值(实参列表), 添加为执行上下文的属性</li>
+<li>var定义的局部变量==&gt;undefined, 添加为执行上下文的属性</li>
+<li>function声明的函数 ==&gt;赋值(fun), 添加为执行上下文的方法</li>
+<li>this==&gt;赋值(调用函数的对象)</li>
+</ul>
+</li>
+<li>开始执行函数体代码</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://wan9huan.github.io/2018/10/01/node-js/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -388,7 +616,7 @@
 
       
         
-          <h1 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h1><p>Node.js是一个Javascript运行环境(runtime environment)，发布于2009年5月，由Ryan Dahl开发，实质是<strong>对Chrome V8引擎进行了封装</strong>。Node.js 不是一个 JavaScript 框架，不同于CakePHP、Django、Rails。Node.js 更不是浏览器端的库，不能与 jQuery、ExtJS 相提并论。Node.js 是一个让 <strong>JavaScript 运行在服务端</strong>的开发平台，它让 JavaScript 成为与PHP、Python、Perl、Ruby 等服务端语言平起平坐的脚本语言。<br>Node.js对一些特殊用例进行优化，提供替代的API，使得V8在非浏览器环境下运行得更好。V8引擎执行Javascript的速度非常快，性能非常好。Node.js是一个基于Chrome JavaScript运行时建立的平台， 用于方便地搭建响应速度快、易于扩展的网络应用。Node.js 使用<strong>事件驱动， 非阻塞I/O 模型</strong>而得以轻量和高效，非常适合在分布式设备上运行数据密集型的实时应用。</p>
+          <h1 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h1><p>Node.js是一个Javascript运行环境(runtime environment)，发布于2009年5月，由Ryan Dahl开发，实质是<strong>对Chrome V8引擎进行了封装</strong>。Node.js 不是一个 JavaScript 框架，不同于CakePHP、Django、Rails。Node.js 更不是浏览器端的库，不能与 jQuery、ExtJS 相提并论。Node.js 是一个让 <strong>JavaScript 运行在服务端</strong>的开发平台，它让 JavaScript 成为与PHP、Python、Perl、Ruby 等服务端语言平起平坐的脚本语言。 </p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/10/01/node-js/" rel="contents">
@@ -1693,166 +1921,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wan9huan.github.io/2017/06/12/Git-和-Github/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="W@n9">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leon">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/12/Git-和-Github/" itemprop="url">Git 和 Github</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T10:58:37+08:00">
-                2017-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/工具使用/" itemprop="url" rel="index">
-                    <span itemprop="name">工具使用</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/12/Git-和-Github/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/06/12/Git-和-Github/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h2><h3 id="个人版本控制"><a href="#个人版本控制" class="headerlink" title="个人版本控制"></a>个人版本控制</h3><p>在进行开发的时候，程序需要经常性的修改，那么修改的时候就存在备份问题，当代码量较大修改频繁时，备份的及时性和备份的困难度就增加了。</p>
-<h3 id="团队版本控制"><a href="#团队版本控制" class="headerlink" title="团队版本控制"></a>团队版本控制</h3><p>当团队中多人协同开发同一个功能时，可能存在开发人员之间的版本互相覆盖问题。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/12/Git-和-Github/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1900,7 +1975,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1911,7 +1986,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1922,7 +1997,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

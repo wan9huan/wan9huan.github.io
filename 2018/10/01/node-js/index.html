@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Leon">
 <meta property="og:description" content="Node.jsNode.js是一个Javascript运行环境(runtime environment)，发布于2009年5月，由Ryan Dahl开发，实质是对Chrome V8引擎进行了封装。Node.js 不是一个 JavaScript 框架，不同于CakePHP、Django、Rails。Node.js 更不是浏览器端的库，不能与 jQuery、ExtJS 相提并论。Node.js 是一个">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-01T04:26:34.443Z">
+<meta property="og:updated_time" content="2018-10-01T04:40:19.522Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="node.js">
 <meta name="twitter:description" content="Node.jsNode.js是一个Javascript运行环境(runtime environment)，发布于2009年5月，由Ryan Dahl开发，实质是对Chrome V8引擎进行了封装。Node.js 不是一个 JavaScript 框架，不同于CakePHP、Django、Rails。Node.js 更不是浏览器端的库，不能与 jQuery、ExtJS 相提并论。Node.js 是一个">
@@ -386,8 +386,9 @@
       
 
       
-        <h1 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h1><p>Node.js是一个Javascript运行环境(runtime environment)，发布于2009年5月，由Ryan Dahl开发，实质是<strong>对Chrome V8引擎进行了封装</strong>。Node.js 不是一个 JavaScript 框架，不同于CakePHP、Django、Rails。Node.js 更不是浏览器端的库，不能与 jQuery、ExtJS 相提并论。Node.js 是一个让 <strong>JavaScript 运行在服务端</strong>的开发平台，它让 JavaScript 成为与PHP、Python、Perl、Ruby 等服务端语言平起平坐的脚本语言。<br>Node.js对一些特殊用例进行优化，提供替代的API，使得V8在非浏览器环境下运行得更好。V8引擎执行Javascript的速度非常快，性能非常好。Node.js是一个基于Chrome JavaScript运行时建立的平台， 用于方便地搭建响应速度快、易于扩展的网络应用。Node.js 使用<strong>事件驱动， 非阻塞I/O 模型</strong>而得以轻量和高效，非常适合在分布式设备上运行数据密集型的实时应用。</p>
+        <h1 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h1><p>Node.js是一个Javascript运行环境(runtime environment)，发布于2009年5月，由Ryan Dahl开发，实质是<strong>对Chrome V8引擎进行了封装</strong>。Node.js 不是一个 JavaScript 框架，不同于CakePHP、Django、Rails。Node.js 更不是浏览器端的库，不能与 jQuery、ExtJS 相提并论。Node.js 是一个让 <strong>JavaScript 运行在服务端</strong>的开发平台，它让 JavaScript 成为与PHP、Python、Perl、Ruby 等服务端语言平起平坐的脚本语言。 </p>
 <a id="more"></a>
+<p>Node.js对一些特殊用例进行优化，提供替代的API，使得V8在非浏览器环境下运行得更好。V8引擎执行Javascript的速度非常快，性能非常好。Node.js是一个基于Chrome JavaScript运行时建立的平台， 用于方便地搭建响应速度快、易于扩展的网络应用。Node.js 使用<strong>事件驱动， 非阻塞I/O 模型</strong>而得以轻量和高效，非常适合在分布式设备上运行数据密集型的实时应用。</p>
 <h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><p>将程序分割成一个个小的模块，解耦和，提高代码复用效率。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//model.js</span></span><br><span class="line">exports.x=<span class="string">"这是一个变量"</span>;</span><br><span class="line"></span><br><span class="line">exports.fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"这是一个函数"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//hello.js</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Hello node!"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> model = <span class="built_in">require</span>(<span class="string">"./module"</span>);</span><br><span class="line"><span class="comment">//require引入模块</span></span><br><span class="line">model.fn();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(model);</span><br></pre></td></tr></table></figure>
@@ -408,7 +409,8 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">package.json</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"pkinit"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">"This is a packagejson init test."</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"math"</span>: <span class="string">"0.0.3"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="缓存区"><a href="#缓存区" class="headerlink" title="缓存区"></a>缓存区</h2><p>结构和操作方法与数组类似，存储二进制数据，元素8位，一字节，00 - ff。（汉字三字节，英数一字节）</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"This is a String "</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> buf = Buffer.from(str);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(buf);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&lt;Buffer 54 68 69 73 20 69 73 20 61 20 53 74 72 69 6e 67 20&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个十字节缓冲区</span></span><br><span class="line"><span class="keyword">var</span> buff = Buffer.alloc(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建不清除内存中数据</span></span><br><span class="line"><span class="keyword">var</span> buff = Buffer.allocUnsafe(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//操作元素</span></span><br><span class="line">buf[<span class="number">0</span>] = <span class="number">255</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(buf.toString());</span><br></pre></td></tr></table></figure>
-<h2 id="同步写"><a href="#同步写" class="headerlink" title="同步写"></a>同步写</h2>
+<h2 id="同步写"><a href="#同步写" class="headerlink" title="同步写"></a>同步写</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fd =fs.openSync(<span class="string">"test.txt"</span>,<span class="string">"w"</span>);</span><br><span class="line"></span><br><span class="line">fs.writeSync(fd,<span class="string">"同步写入内容"</span>);</span><br><span class="line"></span><br><span class="line">fs.closeSync(fd);</span><br><span class="line"></span><br><span class="line"><span class="comment">// fs.openSync(path,flags[,mode])  参数为字符串 （路径，r|w）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//fs.writeSync(fd,string[,position[,condiong]])</span></span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -466,6 +468,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/02/JavaScript/" rel="prev" title="JavaScript">
+                JavaScript <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -549,7 +555,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -560,7 +566,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -571,7 +577,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
