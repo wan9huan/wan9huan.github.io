@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wan9huan.github.io/"/>
-  <updated>2018-10-03T03:29:28.059Z</updated>
+  <updated>2018-10-05T05:20:22.083Z</updated>
   <id>https://wan9huan.github.io/</id>
   
   <author>
@@ -21,21 +21,15 @@
     <link href="https://wan9huan.github.io/2018/10/02/JavaScript/"/>
     <id>https://wan9huan.github.io/2018/10/02/JavaScript/</id>
     <published>2018-10-02T01:20:44.000Z</published>
-    <updated>2018-10-03T03:29:28.059Z</updated>
+    <updated>2018-10-05T05:20:22.083Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;JavaScript&quot;&gt;&lt;a href=&quot;#JavaScript&quot; class=&quot;headerlink&quot; title=&quot;JavaScript&quot;&gt;&lt;/a&gt;JavaScript&lt;/h1&gt;&lt;h2 id=&quot;数据类型&quot;&gt;&lt;a href=&quot;#数据类型&quot;
-        
-      
+      &lt;p&gt;JavaScript一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML（标准通用标记语言下的一个应用）网页上使用，用来给HTML网页增加动态功能。&lt;/p&gt;
     
     </summary>
     
-      <category term="“前端技术”" scheme="https://wan9huan.github.io/categories/%E2%80%9C%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF%E2%80%9D/"/>
+      <category term="前端技术" scheme="https://wan9huan.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
     
     
       <category term="JS" scheme="https://wan9huan.github.io/tags/JS/"/>
