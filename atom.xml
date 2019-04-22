@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wan9huan.github.io/"/>
-  <updated>2019-04-20T06:30:10.635Z</updated>
+  <updated>2019-04-22T06:01:53.495Z</updated>
   <id>https://wan9huan.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Basic Customer Managememt System</title>
+    <link href="https://wan9huan.github.io/2019/04/22/Basic-Customer-Managememt-System/"/>
+    <id>https://wan9huan.github.io/2019/04/22/Basic-Customer-Managememt-System/</id>
+    <published>2019-04-22T00:37:55.000Z</published>
+    <updated>2019-04-22T06:01:53.495Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;练习JavaSE类实例化、数组使用、MVC式程序入门练习。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="https://wan9huan.github.io/categories/Java/"/>
+    
+    
+      <category term="基础练习" scheme="https://wan9huan.github.io/tags/%E5%9F%BA%E7%A1%80%E7%BB%83%E4%B9%A0/"/>
+    
+      <category term="MVC预热" scheme="https://wan9huan.github.io/tags/MVC%E9%A2%84%E7%83%AD/"/>
+    
+      <category term="分层设计" scheme="https://wan9huan.github.io/tags/%E5%88%86%E5%B1%82%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaSE-Chapter-3</title>

@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="基础练习,MVC预热,分层设计," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Leon" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="练习JavaSE类实例化、数组使用、MVC式程序入门练习。">
+<meta name="keywords" content="基础练习,MVC预热,分层设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Basic Customer Managememt System">
+<meta property="og:url" content="https://wan9huan.github.io/2019/04/22/Basic-Customer-Managememt-System/index.html">
+<meta property="og:site_name" content="Leon">
+<meta property="og:description" content="练习JavaSE类实例化、数组使用、MVC式程序入门练习。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://wan9huan.github.io/2019/04/22/Basic-Customer-Managememt-System/mainManu.JPG">
+<meta property="og:image" content="https://wan9huan.github.io/2019/04/22/Basic-Customer-Managememt-System/addCustomer.jpg">
+<meta property="og:image" content="https://wan9huan.github.io/2019/04/22/Basic-Customer-Managememt-System/modifyCustomer.jpg">
+<meta property="og:image" content="https://wan9huan.github.io/2019/04/22/Basic-Customer-Managememt-System/deleteCustomer.jpg">
+<meta property="og:image" content="https://wan9huan.github.io/2019/04/22/Basic-Customer-Managememt-System/listCustomers.jpg">
+<meta property="og:image" content="https://wan9huan.github.io/2019/04/22/Basic-Customer-Managememt-System/Customer.JPG">
+<meta property="og:image" content="https://wan9huan.github.io/2019/04/22/Basic-Customer-Managememt-System/CustomerService.jpg">
+<meta property="og:image" content="https://wan9huan.github.io/2019/04/22/Basic-Customer-Managememt-System/CustomerView">
+<meta property="og:image" content="https://wan9huan.github.io/2019/04/22/Basic-Customer-Managememt-System/active.jpg">
+<meta property="og:image" content="https://wan9huan.github.io/2019/04/22/Basic-Customer-Managememt-System/project.jpg">
+<meta property="og:updated_time" content="2019-04-22T06:01:53.495Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Basic Customer Managememt System">
+<meta name="twitter:description" content="练习JavaSE类实例化、数组使用、MVC式程序入门练习。">
+<meta name="twitter:image" content="https://wan9huan.github.io/2019/04/22/Basic-Customer-Managememt-System/mainManu.JPG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wan9huan.github.io/2019/04/22/Basic-Customer-Managememt-System/"/>
+
+
+
+
+
+  <title>Basic Customer Managememt System | Leon</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leon</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">You know some birds are not meant to be caged</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wan9huan.github.io/2019/04/22/Basic-Customer-Managememt-System/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="W@n9">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leon">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Basic Customer Managememt System</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-22T08:37:55+08:00">
+                2019-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/22/Basic-Customer-Managememt-System/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/22/Basic-Customer-Managememt-System/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>练习JavaSE类实例化、数组使用、MVC式程序入门练习。</p>
+  <a id="more"></a>
+<h1 id="简单项目管理系统设计"><a href="#简单项目管理系统设计" class="headerlink" title="简单项目管理系统设计"></a>简单项目管理系统设计</h1><h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><h3 id="界面说明"><a href="#界面说明" class="headerlink" title="界面说明"></a>界面说明</h3><h4 id="主界面"><a href="#主界面" class="headerlink" title="主界面"></a>主界面</h4><p>​    提供一个主界面菜单，菜单选项包括客户添加、修改、删除、展示、退出等选项，菜单在cmd窗口中打印显示。</p>
+<p><img src="/2019/04/22/Basic-Customer-Managememt-System/mainManu.JPG" alt="主菜单"></p>
+<h4 id="添加客户界面"><a href="#添加客户界面" class="headerlink" title="添加客户界面"></a>添加客户界面</h4><p>​    添加客户提示用户输入对应信息，控制输入行和提示行。</p>
+<p><img src="/2019/04/22/Basic-Customer-Managememt-System/addCustomer.jpg" alt="添加用户"></p>
+<h4 id="修改客户"><a href="#修改客户" class="headerlink" title="修改客户"></a>修改客户</h4><p><img src="/2019/04/22/Basic-Customer-Managememt-System/modifyCustomer.jpg" alt="修改客户"></p>
+<h4 id="删除客户"><a href="#删除客户" class="headerlink" title="删除客户"></a>删除客户</h4><p><img src="/2019/04/22/Basic-Customer-Managememt-System/deleteCustomer.jpg" alt="删除客户"></p>
+<h4 id="客户列表"><a href="#客户列表" class="headerlink" title="客户列表"></a>客户列表</h4><p><img src="/2019/04/22/Basic-Customer-Managememt-System/listCustomers.jpg" alt="打印用户列表"></p>
+<h3 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h3><ol>
+<li>每个客户的信息被保存在Customer对象中</li>
+<li>以一个Customer类型的数组来记录当前所有的客户</li>
+<li>每次“添加客户”（菜单1）后，客户（Customer）对象被添加到数组中</li>
+<li>每次“修改客户”（菜单2）后，客户对象的属性被重新赋为新值</li>
+<li>每次“删除客户”（菜单3）后，客户（Customer）对象被从数组中清除。</li>
+<li>执行“客户列表 ”（菜单4）时，将列出数组中所有客户的信息</li>
+</ol>
+<h2 id="类设计"><a href="#类设计" class="headerlink" title="类设计"></a>类设计</h2><h3 id="Customer类"><a href="#Customer类" class="headerlink" title="Customer类"></a>Customer类</h3><p>​    <code>Customer</code>类存放在domain包中，作为管理系统实体对象(JavaBean),传输一个顾客的所有信息。</p>
+<ul>
+<li>姓名、性别、年龄、电话、邮箱</li>
+<li>getter、setter方法</li>
+</ul>
+<p><img src="/2019/04/22/Basic-Customer-Managememt-System/Customer.JPG" alt="顾客"></p>
+<h3 id="CustomerService类"><a href="#CustomerService类" class="headerlink" title="CustomerService类"></a>CustomerService类</h3><p>​        包含一个<code>Customers</code>数组用于存放顾客的信息，编写一系列方法，用于完成顾客信息的增删改查。</p>
+<p><img src="/2019/04/22/Basic-Customer-Managememt-System/CustomerService.jpg" alt="service"></p>
+<ul>
+<li><code>customers</code>    Customer数组</li>
+<li><code>alreadyUsed</code>    数组已使用元素个数</li>
+<li><code>maxStore</code>    数组最大的长度</li>
+<li><code>CustomerService(int)</code>    CustomerService类构造函数(传初始大小)    </li>
+<li><code>addCustomer</code>    添加顾客信息方法</li>
+<li><code>deleteCustomer</code>    删除顾客信息方法</li>
+<li><code>modifyCustomer</code>    修改顾客信息方法</li>
+<li><code>selectAllCustomer</code>    查询全部顾客信息方法</li>
+<li><code>selectCustomer</code>    查询某个用户信息方法(传用户编号)</li>
+<li><code>increaseCustomers</code>    扩充顾客数组(达到最大长度自动扩容)</li>
+</ul>
+<h3 id="CustomerView"><a href="#CustomerView" class="headerlink" title="CustomerView"></a>CustomerView</h3><p>​        <code>CustomerView</code>主要用于用户于程序的交互，打印主界面，根据用户的输入选择对应的操作，引导用户输入客户信息等。</p>
+<p><img src="/2019/04/22/Basic-Customer-Managememt-System/CustomerView" alt="view"></p>
+<ul>
+<li><code>customerSerivce</code>    CustomerService成员，用于执行操作</li>
+<li><code>CustomerView(CustomerService)</code>    构造方法(传CustomerService对象)</li>
+<li><code>mainManu()</code>    打印主菜单</li>
+<li><code>addCustomer()</code>    添加顾客信息</li>
+<li><code>modifyCustomer()</code>    修改用户信息</li>
+<li><code>deleteCustomer()</code>    删除用户</li>
+<li><code>selectCustomers()</code>    查询所有用户信息</li>
+</ul>
+<h3 id="CustomerMain"><a href="#CustomerMain" class="headerlink" title="CustomerMain"></a>CustomerMain</h3><p>​    程序运行入口，定义主方法，并在主方法中实例化<code>CustomerView</code>对象及<code>CustomerService</code>对象，并执行<code>CustomerView.mainManu()</code>方法。</p>
+<h2 id="系统活动图"><a href="#系统活动图" class="headerlink" title="系统活动图"></a>系统活动图</h2><p><img src="/2019/04/22/Basic-Customer-Managememt-System/active.jpg" alt="activedraw"></p>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><h3 id="工程目录结构"><a href="#工程目录结构" class="headerlink" title="工程目录结构"></a>工程目录结构</h3><p><img src="/2019/04/22/Basic-Customer-Managememt-System/project.jpg" alt="project"></p>
+<h3 id="Customer-java"><a href="#Customer-java" class="headerlink" title="Customer.java"></a>Customer.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.leon.cms.domain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">char</span> gender;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> String phome;</span><br><span class="line">    <span class="keyword">private</span> String addr;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">char</span> <span class="title">getGender</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> gender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setGender</span><span class="params">(<span class="keyword">char</span> gender)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.gender = gender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPhome</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> phome;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPhome</span><span class="params">(String phome)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.phome = phome;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAddr</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> addr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAddr</span><span class="params">(String addr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.addr = addr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Customer&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", gender="</span> + gender +</span><br><span class="line">                <span class="string">", age="</span> + age +</span><br><span class="line">                <span class="string">", phome='"</span> + phome + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", addr='"</span> + addr + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="CustomerService-java"><a href="#CustomerService-java" class="headerlink" title="CustomerService.java"></a>CustomerService.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.leon.cms.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.leon.cms.domain.Customer;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomerService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * @姓名 王欢</span></span><br><span class="line"><span class="comment">     * @组别 第十一组</span></span><br><span class="line"><span class="comment">     * @时间 2019/4/20</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Customer[] customers;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> alreadyUsed;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> maxStore;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CustomerService</span><span class="params">(<span class="keyword">int</span> maxStore)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.customers = <span class="keyword">new</span> Customer[maxStore];</span><br><span class="line">        <span class="keyword">this</span>.maxStore = maxStore;</span><br><span class="line">        <span class="keyword">this</span>.alreadyUsed = -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">addCustomer</span><span class="params">(Customer customer)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(maxStore==alreadyUsed) flag = increaseCustomers();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(!flag) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">        customers[alreadyUsed+<span class="number">1</span>] = customer;</span><br><span class="line"></span><br><span class="line">        alreadyUsed++;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">deleteCustomer</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(index&lt;<span class="number">0</span> || index &gt; alreadyUsed) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=index; i&lt;=alreadyUsed-<span class="number">1</span>; i++)&#123;</span><br><span class="line">            customers[i] = customers[i+<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        customers[alreadyUsed] = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        alreadyUsed--;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">modifyCustomer</span><span class="params">(<span class="keyword">int</span> index,Customer customer)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(index&lt;<span class="number">0</span> || index &gt; alreadyUsed) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">        customers[index] = customer;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Customer[] selectAllCustomer()&#123;</span><br><span class="line"></span><br><span class="line">        Customer[] customers= <span class="keyword">new</span> Customer[alreadyUsed+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(alreadyUsed == -<span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>; i&lt;=alreadyUsed; i++)</span><br><span class="line"></span><br><span class="line">            customers[i] = <span class="keyword">this</span>.customers[i];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> customers;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Customer <span class="title">selectCustomer</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> customers[index];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">increaseCustomers</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> copied = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        Customer[] newCustomers = <span class="keyword">new</span> Customer[maxStore+<span class="number">20</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt; maxStore;i++)&#123;</span><br><span class="line">            newCustomers[i] = customers[i];</span><br><span class="line">            copied++;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.customers = newCustomers;</span><br><span class="line">        <span class="keyword">this</span>.maxStore = maxStore + <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>((customers.length-copied)==(customers.length-maxStore)) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="CustomerView-java"><a href="#CustomerView-java" class="headerlink" title="CustomerView.java"></a>CustomerView.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.leon.cms.view;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.leon.cms.utility.CMUtility;</span><br><span class="line"><span class="keyword">import</span> com.leon.cms.domain.Customer;</span><br><span class="line"><span class="keyword">import</span> com.leon.cms.service.CustomerService;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomerView</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * @姓名 王欢</span></span><br><span class="line"><span class="comment">     * @组别 第十一组</span></span><br><span class="line"><span class="comment">     * @时间 2019/4/20</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> CustomerService customerService;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CustomerView</span><span class="params">(CustomerService customerService)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.customerService = customerService;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//主界面</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mainManu</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">char</span> operation = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(flag)&#123;</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">"\n-----------------客户信息管理软件-----------------\n"</span>);</span><br><span class="line">            System.out.println(<span class="string">"                                                  "</span>);</span><br><span class="line">            System.out.println(<span class="string">"                1 添 加 客 户                     "</span>);</span><br><span class="line">            System.out.println(<span class="string">"                2 修 改 客 户                     "</span>);</span><br><span class="line">            System.out.println(<span class="string">"                3 删 除 客 户                     "</span>);</span><br><span class="line">            System.out.println(<span class="string">"                4 客 户 列 表                     "</span>);</span><br><span class="line">            System.out.println(<span class="string">"                5 退       出                 	  "</span>);</span><br><span class="line">            System.out.println(<span class="string">"                                                  "</span>);</span><br><span class="line">            System.out.print(<span class="string">"                 请选择(1-5) : "</span>);</span><br><span class="line"></span><br><span class="line">            operation = CMUtility.readMenuSelection();</span><br><span class="line"></span><br><span class="line"> <span class="comment">//           System.out.println(operation);</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">switch</span> (operation)&#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> <span class="string">'1'</span>:</span><br><span class="line">                    addCustomer();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'2'</span>:</span><br><span class="line">                    modifyCustomer();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'3'</span>:</span><br><span class="line">                    deleteCustomer();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'4'</span>:</span><br><span class="line">                    selectCustomers();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'5'</span>:</span><br><span class="line">                    flag = <span class="keyword">false</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCustomer</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        Customer customer = <span class="keyword">new</span> Customer();</span><br><span class="line">        System.out.println(<span class="string">"\n---------------------添加客户---------------------\n"</span>);</span><br><span class="line">        System.out.print(<span class="string">"顾客姓名："</span>);</span><br><span class="line">        customer.setName(CMUtility.readString(<span class="number">10</span>,<span class="string">"王欢  "</span>));</span><br><span class="line">        System.out.print(<span class="string">"顾客性别："</span>);</span><br><span class="line">        customer.setGender(CMUtility.readChar(<span class="string">'男'</span>));</span><br><span class="line">        System.out.print(<span class="string">"顾客年龄："</span>);</span><br><span class="line">        customer.setAge(CMUtility.readInt(<span class="number">24</span>));</span><br><span class="line">        System.out.print(<span class="string">"顾客电话："</span>);</span><br><span class="line">        customer.setPhome(CMUtility.readString(<span class="number">11</span>,<span class="string">"16605810950"</span>));</span><br><span class="line">        System.out.print(<span class="string">"顾客地址："</span>);</span><br><span class="line">        customer.setAddr(CMUtility.readString(<span class="number">50</span>,<span class="string">"1958862281@qq.com"</span>));</span><br><span class="line"></span><br><span class="line">        customerService.addCustomer(customer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">modifyCustomer</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Customer customer = <span class="keyword">new</span> Customer();</span><br><span class="line">        <span class="keyword">int</span> index;</span><br><span class="line">        System.out.println(<span class="string">"\n---------------------修改客户---------------------\n"</span>);</span><br><span class="line">        System.out.print(<span class="string">"顾客序号："</span>);</span><br><span class="line">        index = CMUtility.readInt();</span><br><span class="line">        System.out.print(<span class="string">"顾客姓名："</span>);</span><br><span class="line">        customer.setName(CMUtility.readString(<span class="number">10</span>,<span class="string">"能天宇"</span>));</span><br><span class="line">        System.out.print(<span class="string">"顾客性别："</span>);</span><br><span class="line">        customer.setGender(CMUtility.readChar(<span class="string">'男'</span>));</span><br><span class="line">        System.out.print(<span class="string">"顾客年龄："</span>);</span><br><span class="line">        customer.setAge(CMUtility.readInt(<span class="number">26</span>));</span><br><span class="line">        System.out.print(<span class="string">"顾客电话："</span>);</span><br><span class="line">        customer.setPhome(CMUtility.readString(<span class="number">11</span>,<span class="string">"13256784800"</span>));</span><br><span class="line">        System.out.print(<span class="string">"顾客地址："</span>);</span><br><span class="line">        customer.setAddr(CMUtility.readString(<span class="number">50</span>,<span class="string">"13256784800@163.com"</span>));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> flag = customerService.modifyCustomer(index-<span class="number">1</span>,customer);</span><br><span class="line">        <span class="keyword">if</span>(flag) System.out.println(<span class="string">"编号："</span>+index+<span class="string">"已完成修改"</span>);</span><br><span class="line">        <span class="keyword">else</span> System.out.println(<span class="string">"修改失败！用户："</span>+index+<span class="string">" 可能不存在！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteCustomer</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> index;</span><br><span class="line">        System.out.println(<span class="string">"\n---------------------删除客户---------------------\n"</span>);</span><br><span class="line">        System.out.print(<span class="string">"需要删除顾客编号："</span>);</span><br><span class="line">        index = CMUtility.readInt();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> flag;</span><br><span class="line">        System.out.print(<span class="string">"确认删除(Y/N)："</span>);</span><br><span class="line">        <span class="keyword">if</span>(CMUtility.readChar()==<span class="string">'Y'</span>) &#123;</span><br><span class="line"></span><br><span class="line">            flag = customerService.deleteCustomer(index-<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(flag)</span><br><span class="line">                System.out.println(<span class="string">"编号为："</span>+index+<span class="string">" 的用户已被删除！"</span>);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                System.out.println(<span class="string">"删除失败！用户"</span>+index+<span class="string">" 可能不存在~"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> System.out.println(<span class="string">"已撤销删除操作！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selectCustomers</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"\n---------------------------客户列表---------------------------\n"</span>);</span><br><span class="line">        System.out.println(<span class="string">"编号\t姓名  \t性别\t年龄\t电话      \t邮箱"</span>);</span><br><span class="line"></span><br><span class="line">        Customer[] customers = customerService.selectAllCustomer();</span><br><span class="line">        <span class="keyword">if</span>(customers!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;customers.length ;i++) &#123;</span><br><span class="line">                System.out.println(i+<span class="number">1</span>+<span class="string">"\t"</span>+customers[i].getName()+<span class="string">"\t"</span>+customers[i].getGender()+<span class="string">"\t"</span>+customers[i].getAge()+<span class="string">"\t"</span>+customers[i].getPhome()+<span class="string">"\t"</span>+customers[i].getAddr());</span><br><span class="line">                <span class="comment">//System.out.println(customer);</span></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span> System.out.println(<span class="string">"没有顾客！"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="CMSUtility-java"><a href="#CMSUtility-java" class="headerlink" title="CMSUtility.java"></a>CMSUtility.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.leon.cms.utility;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.leon.cms.domain.Customer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CMUtility</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">char</span> <span class="title">readMenuSelection</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span> c;</span><br><span class="line">        <span class="keyword">for</span> (; ; ) &#123;</span><br><span class="line">            String str = readKeyBoard(<span class="number">1</span>, <span class="keyword">false</span>);</span><br><span class="line">            c = str.charAt(<span class="number">0</span>);</span><br><span class="line">            <span class="keyword">if</span> (c != <span class="string">'1'</span> &amp;&amp; c != <span class="string">'2'</span> &amp;&amp;</span><br><span class="line">                    c != <span class="string">'3'</span> &amp;&amp; c != <span class="string">'4'</span> &amp;&amp; c != <span class="string">'5'</span>) &#123;</span><br><span class="line">                System.out.print(<span class="string">"选择错误，请重新输入："</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">char</span> <span class="title">readChar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String str = readKeyBoard(<span class="number">1</span>, <span class="keyword">false</span>);</span><br><span class="line">        <span class="keyword">return</span> str.charAt(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">char</span> <span class="title">readChar</span><span class="params">(<span class="keyword">char</span> defaultValue)</span> </span>&#123;</span><br><span class="line">        String str = readKeyBoard(<span class="number">1</span>, <span class="keyword">true</span>);</span><br><span class="line">        <span class="keyword">return</span> (str.length() == <span class="number">0</span>) ? defaultValue : str.charAt(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">readInt</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        <span class="keyword">for</span> (; ; ) &#123;</span><br><span class="line">            String str = readKeyBoard(<span class="number">2</span>, <span class="keyword">false</span>);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                n = Integer.parseInt(str);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</span><br><span class="line">                System.out.print(<span class="string">"数字输入错误，请重新输入："</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">readInt</span><span class="params">(<span class="keyword">int</span> defaultValue)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        <span class="keyword">for</span> (; ; ) &#123;</span><br><span class="line">            String str = readKeyBoard(<span class="number">2</span>, <span class="keyword">true</span>);</span><br><span class="line">            <span class="keyword">if</span> (str.equals(<span class="string">""</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> defaultValue;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                n = Integer.parseInt(str);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</span><br><span class="line">                System.out.print(<span class="string">"数字输入错误，请重新输入："</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">readString</span><span class="params">(<span class="keyword">int</span> limit)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> readKeyBoard(limit, <span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">readString</span><span class="params">(<span class="keyword">int</span> limit, String defaultValue)</span> </span>&#123;</span><br><span class="line">        String str = readKeyBoard(limit, <span class="keyword">true</span>);</span><br><span class="line">        <span class="keyword">return</span> str.equals(<span class="string">""</span>)? defaultValue : str;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">char</span> <span class="title">readConfirmSelection</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span> c;</span><br><span class="line">        <span class="keyword">for</span> (; ; ) &#123;</span><br><span class="line">            String str = readKeyBoard(<span class="number">1</span>, <span class="keyword">false</span>).toUpperCase();</span><br><span class="line">            c = str.charAt(<span class="number">0</span>);</span><br><span class="line">            <span class="keyword">if</span> (c == <span class="string">'Y'</span> || c == <span class="string">'N'</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                System.out.print(<span class="string">"选择错误，请重新输入："</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">readKeyBoard</span><span class="params">(<span class="keyword">int</span> limit, <span class="keyword">boolean</span> blankReturn)</span> </span>&#123;</span><br><span class="line">        String line = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (scanner.hasNextLine()) &#123;</span><br><span class="line">            line = scanner.nextLine();</span><br><span class="line">            <span class="keyword">if</span> (line.length() == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (blankReturn) <span class="keyword">return</span> line;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (line.length() &lt; <span class="number">1</span> || line.length() &gt; limit) &#123;</span><br><span class="line">                System.out.print(<span class="string">"输入长度（不大于"</span> + limit + <span class="string">"）错误，请重新输入："</span>);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> line;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/基础练习/" rel="tag"># 基础练习</a>
+          
+            <a href="/tags/MVC预热/" rel="tag"># MVC预热</a>
+          
+            <a href="/tags/分层设计/" rel="tag"># 分层设计</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/18/JavaSE-Chapter3/" rel="next" title="JavaSE-Chapter-3">
+                <i class="fa fa-chevron-left"></i> JavaSE-Chapter-3
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="W@n9" />
+            
+              <p class="site-author-name" itemprop="name">W@n9</p>
+              <p class="site-description motion-element" itemprop="description">Their feathers are just too bright.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yourname" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1958862281@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简单项目管理系统设计"><span class="nav-number">1.</span> <span class="nav-text">简单项目管理系统设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求分析"><span class="nav-number">1.1.</span> <span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#界面说明"><span class="nav-number">1.1.1.</span> <span class="nav-text">界面说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主界面"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">主界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加客户界面"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">添加客户界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改客户"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">修改客户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除客户"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">删除客户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户列表"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">客户列表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能说明"><span class="nav-number">1.1.2.</span> <span class="nav-text">功能说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类设计"><span class="nav-number">1.2.</span> <span class="nav-text">类设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Customer类"><span class="nav-number">1.2.1.</span> <span class="nav-text">Customer类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CustomerService类"><span class="nav-number">1.2.2.</span> <span class="nav-text">CustomerService类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CustomerView"><span class="nav-number">1.2.3.</span> <span class="nav-text">CustomerView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CustomerMain"><span class="nav-number">1.2.4.</span> <span class="nav-text">CustomerMain</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统活动图"><span class="nav-number">1.3.</span> <span class="nav-text">系统活动图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码示例"><span class="nav-number">1.4.</span> <span class="nav-text">代码示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工程目录结构"><span class="nav-number">1.4.1.</span> <span class="nav-text">工程目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Customer-java"><span class="nav-number">1.4.2.</span> <span class="nav-text">Customer.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CustomerService-java"><span class="nav-number">1.4.3.</span> <span class="nav-text">CustomerService.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CustomerView-java"><span class="nav-number">1.4.4.</span> <span class="nav-text">CustomerView.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMSUtility-java"><span class="nav-number">1.4.5.</span> <span class="nav-text">CMSUtility.java</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">W@n9</span>
+  <br>
+  <div class="powered-by"> <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 本站访客数:<span id="busuanzi_value_site_uv"></span></span>
+                                                       <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></div>
+  
+
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'UbJtdVwoawlqEf5yKO8dGq7W-gzGzoHsz',
+        appKey: '5nOMvhOssjkxUdFg81zDVoWv',
+        placeholder: '评论留下联系方式，我知道你缺一个好辅助，我主W',
+        avatar:'retro',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":200},"mobile":{"show":false},"log":false});</script></body>
+</html>
