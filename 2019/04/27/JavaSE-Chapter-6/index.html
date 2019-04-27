@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="JS,高级,编程," />
+  <meta name="keywords" content="java基础复习,枚举注解," />
 
 
 
@@ -79,22 +79,20 @@
 
 
 
-<meta name="description" content="JavaScript一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML（标准通用标记语言下的一个应用）网页上使用，用来给HTML网页增加动态功能。">
-<meta name="keywords" content="JS,高级,编程">
+<meta name="description" content="​    枚举、注解，认识练习使用枚举型、注解。">
+<meta name="keywords" content="java基础复习,枚举注解">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript">
-<meta property="og:url" content="https://wan9huan.github.io/2018/10/02/JavaScript/index.html">
+<meta property="og:title" content="JavaSE-Chapter-6">
+<meta property="og:url" content="https://wan9huan.github.io/2019/04/27/JavaSE-Chapter-6/index.html">
 <meta property="og:site_name" content="Leon">
-<meta property="og:description" content="JavaScript一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML（标准通用标记语言下的一个应用）网页上使用，用来给HTML网页增加动态功能。">
+<meta property="og:description" content="​    枚举、注解，认识练习使用枚举型、注解。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://wan9huan.github.io/2018/10/02/JavaScript/内存模型.png">
-<meta property="og:image" content="https://wan9huan.github.io/2018/10/02/JavaScript/原型模式.png">
-<meta property="og:image" content="https://wan9huan.github.io/2018/10/02/JavaScript/原型链.png">
-<meta property="og:updated_time" content="2018-10-05T05:27:09.151Z">
+<meta property="og:image" content="https://wan9huan.github.io/2019/04/27/JavaSE-Chapter-6/枚举型.jpg">
+<meta property="og:updated_time" content="2019-04-27T08:53:37.162Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript">
-<meta name="twitter:description" content="JavaScript一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML（标准通用标记语言下的一个应用）网页上使用，用来给HTML网页增加动态功能。">
-<meta name="twitter:image" content="https://wan9huan.github.io/2018/10/02/JavaScript/内存模型.png">
+<meta name="twitter:title" content="JavaSE-Chapter-6">
+<meta name="twitter:description" content="​    枚举、注解，认识练习使用枚举型、注解。">
+<meta name="twitter:image" content="https://wan9huan.github.io/2019/04/27/JavaSE-Chapter-6/枚举型.jpg">
 
 
 
@@ -124,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://wan9huan.github.io/2018/10/02/JavaScript/"/>
+  <link rel="canonical" href="https://wan9huan.github.io/2019/04/27/JavaSE-Chapter-6/"/>
 
 
 
 
 
-  <title>JavaScript | Leon</title>
+  <title>JavaSE-Chapter-6 | Leon</title>
   
 
 
@@ -291,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wan9huan.github.io/2018/10/02/JavaScript/">
+    <link itemprop="mainEntityOfPage" href="https://wan9huan.github.io/2019/04/27/JavaSE-Chapter-6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="W@n9">
@@ -308,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript</h1>
+          <h1 class="post-title" itemprop="name headline">JavaSE-Chapter-6</h1>
         
 
         <div class="post-meta">
@@ -320,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-02T09:20:44+08:00">
-                2018-10-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-27T14:17:00+08:00">
+                2019-04-27
               </time>
             
 
@@ -343,8 +341,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端技术/" itemprop="url" rel="index">
-                    <span itemprop="name">前端技术</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -361,8 +359,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/10/02/JavaScript/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/02/JavaScript/" itemprop="commentCount"></span>
+                <a href="/2019/04/27/JavaSE-Chapter-6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/27/JavaSE-Chapter-6/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -390,85 +388,24 @@
       
 
       
-        <p>JavaScript一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML（标准通用标记语言下的一个应用）网页上使用，用来给HTML网页增加动态功能。</p>
+        <p>​    枚举、注解，认识练习使用枚举型、注解。</p>
 <a id="more"></a>
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><ol>
-<li>String：任意字符串</li>
-<li>Number：任意数字</li>
-<li>boolean：true/false</li>
-<li>undefined：undefined</li>
-<li>null：null</li>
-</ol>
-<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><ol>
-<li>Object：任意对象</li>
-<li>Function：可执行对象</li>
-<li>Array：数组类型，下标访问</li>
-</ol>
-<h3 id="判断类型"><a href="#判断类型" class="headerlink" title="判断类型"></a>判断类型</h3><ol>
-<li>typeof：类型判断。undefined/数值/字符串/布尔值</li>
-<li>instanceof：判断对象是否为某个类型 a instanceof Object</li>
-<li>===：判断引用是否为完全相等，即指向同一个地址</li>
-</ol>
-<h2 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h2><p>JavaScript的内存模型中包含堆栈，对象的引用存储在栈中，堆中存储了对象的实例。加载代码到内存中，同样包含一个方法区。</p>
-<p><img src="/2018/10/02/JavaScript/内存模型.png" alt=""></p>
-<p>分配内存 -&gt; 存储数据 -&gt; 释放内存。局部变量在执行完成后自动释放，对象在没有引用的情况下会被垃圾回收。</p>
-<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>对象可以封装多个数据，一个对象代表一个事物的抽象，统一管理多个数据。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> car = &#123;</span><br><span class="line">    name:<span class="string">'BMW'</span>,</span><br><span class="line">    price:<span class="string">'100w'</span>,</span><br><span class="line">    setName:<span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;,</span><br><span class="line">    setPrice:<span class="function"><span class="keyword">function</span>(<span class="params">price</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.price = price</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//方法认为是一种特别的属性</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">car.setName(<span class="string">"宝马"</span>);</span><br><span class="line">car.setPrice(<span class="string">"100万"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(car.name);</span><br><span class="line"></span><br><span class="line">car[<span class="string">'setName'</span>](<span class="string">"奔驰"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(car[<span class="string">'name'</span>]);</span><br></pre></td></tr></table></figure>
-<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//直接调用</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">check</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (num &lt; <span class="number">60</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"不及格！"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(num&gt;=<span class="number">60</span>&amp;&amp;num&lt;<span class="number">90</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"中等！"</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">90</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"优秀！"</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;<span class="built_in">console</span>.log(<span class="string">"错误！"</span>)&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">check(<span class="number">60</span>);</span><br><span class="line">check(<span class="number">80</span>);</span><br><span class="line">check(<span class="number">90</span>);</span><br><span class="line">check(<span class="string">"a"</span>);</span><br><span class="line"><span class="comment">//对象调用</span></span><br><span class="line"><span class="keyword">var</span> obj =&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">"name"</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"this is a function!"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn.call(obj);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj.name)</span><br></pre></td></tr></table></figure>
-<h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><p>事件回调函数、定时器回调函数、ajax请求回调函数、声明周期回调函数</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span> = <span class="string">"btn"</span>&gt;</span>按钮测试！<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>).onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        alert(<span class="keyword">this</span>.innerHTML)</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 事件回调</span></span></span><br><span class="line"><span class="javascript">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        alert(<span class="string">"Time out"</span>),<span class="number">2000</span></span></span><br><span class="line"><span class="undefined">    &#125;)</span></span><br><span class="line"><span class="javascript">  	<span class="comment">//定时器回调</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="IIFE"><a href="#IIFE" class="headerlink" title="IIFE"></a>IIFE</h2><p>Immediatel-Invoked Function Expression：立即执行函数表达式</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"立即执行函数！"</span>)</span><br><span class="line">&#125;)()</span><br><span class="line"><span class="comment">//匿名函数自调用</span></span><br></pre></td></tr></table></figure>
-<h2 id="this指针"><a href="#this指针" class="headerlink" title="this指针"></a>this指针</h2><ol>
-<li>全局：window</li>
-<li>函数内部：指向当前函数对象</li>
-<li>调用：指向调用者</li>
-</ol>
-<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>每个函数都有一个prototype属性，这个属性默认指向一个空Object对象，对象中包括一个构造器函数(constructor),prototype对象中包括了很多操作的方法，类似于类构造，这个对象中包含了很多方法。当一个对象属于某一类对象的时候，它会拥有一个原型属性，这个属性中包括了这一类对象的所有方法。类似于继承。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(fn.prototype)</span><br><span class="line"><span class="comment">//fn.prototype即为原型对象</span></span><br><span class="line"><span class="built_in">console</span>.log(fn.prototype.constructor===fn)</span><br><span class="line"><span class="comment">//构造器指向函数本身</span></span><br></pre></td></tr></table></figure>
-<h3 id="显式原型"><a href="#显式原型" class="headerlink" title="显式原型"></a>显式原型</h3><p>上面描述的属性即为函数的显式原型。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">abc</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(abc.prototype)</span><br></pre></td></tr></table></figure>
-<h3 id="隐式原型"><a href="#隐式原型" class="headerlink" title="隐式原型"></a>隐式原型</h3><p>实例对象将包含一个隐式原型，即实例过后的对象将包含一个_proto_属性，其值对行为其构造函数的显式原型值，即实例化对象指向原型对象。</p>
-<p>简单理解，这两个原型，显式原型是函数定义就指向的原型对象，类似Java中的父类，而隐式原型是实例后的属性，同样也指向父函数。原型对象中的方法，可以在实例对象中直接进行调用，而其调用方法是通过隐式原型属性获取到了父对象的方法。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fn.prototype  指向某个对象  <span class="built_in">Object</span></span><br><span class="line">fn._proto_    指向某个对象  <span class="built_in">Object</span></span><br></pre></td></tr></table></figure>
-<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><p><img src="/2018/10/02/JavaScript/原型模式.png" alt="1538533188054"></p>
-<p>执行方法是，现在实例中寻找，再到隐式原型寻找，再到运行对象寻找，寻找方法会沿着隐式原型一直寻找到Object对象。</p>
-<p><img src="/2018/10/02/JavaScript/原型链.png" alt="1538534521108"></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">A.prototype.n = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> A()</span><br><span class="line"></span><br><span class="line">A.prototype = &#123;</span><br><span class="line">  n:<span class="number">2</span>,</span><br><span class="line">  m:<span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> A()</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(b.n,b.m,c.n,c.m)</span><br><span class="line">    </span><br><span class="line"># 1 undefined 2 3</span><br></pre></td></tr></table></figure>
-<h2 id="上下文"><a href="#上下文" class="headerlink" title="上下文"></a>上下文</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">3</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a)</span><br><span class="line">  <span class="keyword">var</span> a =<span class="number">4</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn()</span><br><span class="line"># undefined</span><br></pre></td></tr></table></figure>
-<p>变量提升，在执行输出语句之前，变量a就已经声明了，只是没有进行赋值，所有结果是undefined，函数也具有这样的特性。</p>
-<p>代码分为全局代码和函数代码。</p>
-<h2 id="全局执行"><a href="#全局执行" class="headerlink" title="全局执行"></a>全局执行</h2><ol>
-<li>代码分类(位置)<ul>
-<li>全局代码</li>
-<li>函数(局部)代码</li>
-</ul>
-</li>
-<li>全局执行上下文<ul>
-<li>在执行全局代码前将window确定为全局执行上下文</li>
-<li>对全局数据进行预处理<ul>
-<li>var定义的全局变量==&gt;undefined, 添加为window的属性</li>
-<li>function声明的全局函数==&gt;赋值(fun), 添加为window的方法</li>
-<li>this==&gt;赋值(window)</li>
-</ul>
-</li>
-<li>开始执行全局代码</li>
-</ul>
-</li>
-<li>函数执行上下文<ul>
-<li>在调用函数, 准备执行函数体之前, 创建对应的函数执行上下文对象(虚拟的, 存在于栈中)</li>
-<li>对局部数据进行预处理<ul>
-<li>形参变量==&gt;赋值(实参)==&gt;添加为执行上下文的属性</li>
-<li>arguments==&gt;赋值(实参列表), 添加为执行上下文的属性</li>
-<li>var定义的局部变量==&gt;undefined, 添加为执行上下文的属性</li>
-<li>function声明的函数 ==&gt;赋值(fun), 添加为执行上下文的方法</li>
-<li>this==&gt;赋值(调用函数的对象)</li>
-</ul>
-</li>
-<li>开始执行函数体代码</li>
-</ul>
-</li>
-</ol>
+<h1 id="枚举和注解"><a href="#枚举和注解" class="headerlink" title="枚举和注解"></a>枚举和注解</h1><h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2><p>​    对象个数可数，可列举，可穷举的类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> TrafficSignal&#123;</span><br><span class="line">  GO, STOP, GAUTION</span><br><span class="line">    <span class="comment">//全局常量对象（public static final）</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testEnum</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">//通过枚举类.常量对象名获取</span></span><br><span class="line">  TrafficSingal ts = TrafficSingal.GO;</span><br><span class="line">  System.out.println(ts);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//通过静态valueOf("枚举对象的字符串")获取</span></span><br><span class="line">  ts.TrafficSingal.valueOf(<span class="string">"STOP"</span>);</span><br><span class="line">  System.out.println(ts);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//通过静态方法values()获取全部枚举对象</span></span><br><span class="line">  TrafficSingal[] all = TraficSingal.values();</span><br><span class="line">  ts = all[<span class="number">2</span>];</span><br><span class="line">  System.out.println(ts);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">switchEnum</span><span class="params">()</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">  TrafficSingal[] all = TraficSingal.values();</span><br><span class="line">  ts = all[<span class="number">1</span>];</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">switch</span> (ts)&#123;</span><br><span class="line">      <span class="keyword">case</span> GO:</span><br><span class="line">         System.out.println(<span class="string">"绿灯~"</span>);</span><br><span class="line">         <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> STOP:</span><br><span class="line">         System.out.println(<span class="string">"红灯~"</span>);</span><br><span class="line">         <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> CAUTION:</span><br><span class="line">         System.out.println(<span class="string">"黄灯~"</span>);</span><br><span class="line">         <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方法说明"><a href="#方法说明" class="headerlink" title="方法说明"></a>方法说明</h3><p><img src="/2019/04/27/JavaSE-Chapter-6/枚举型.jpg" alt="枚举型"></p>
+<h3 id="定义成员"><a href="#定义成员" class="headerlink" title="定义成员"></a>定义成员</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Week &#123;</span><br><span class="line"></span><br><span class="line">    MON(<span class="string">"周一"</span>,<span class="string">"划水"</span>), THU(<span class="string">"周二"</span>,<span class="string">"鸡血"</span>),WED(<span class="string">"周三"</span>,<span class="string">"死亡"</span>),TUE(<span class="string">"周四"</span>,<span class="string">"赶稿"</span>),FRI(<span class="string">"周五"</span>,<span class="string">"欢乐"</span>),SAT(<span class="string">"周六"</span>,<span class="string">"科科"</span>), SUN(<span class="string">"周日"</span>,<span class="string">"睡觉"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String work;</span><br><span class="line"></span><br><span class="line">    Week(String name,String work) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.work = work;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getWork</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> work;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setWork</span><span class="params">(String work)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.work = work;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    <code>ps.这种使用方式较少~</code></p>
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><p>​    从 JDK 5.0 开始Java 增加了对元数据(MetaData) 的支持，即注解(Annotation)，注解其实就是代码里的特殊标记, 这些标记可以在编译, 类加载, 运行时被读取, 并执行相应的处理. 通过使用 注解, 程序员可以在不改变原有逻辑的情况下, 在源文件中嵌入一些补充信息.注解可以像修饰符一样被使用, 可用于修饰包,类, 构造器, 方法, 成员变量, 参数, 局部变量的声明, 这些信息被保存在 注解 的 “name=value” 对中.注解能被用来为程序元素(类, 方法, 成员变量等) 设置元数据。</p>
+<h3 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h3><h4 id="Deprecated"><a href="#Deprecated" class="headerlink" title="@Deprecated"></a>@Deprecated</h4><p>​    内置注解，用于修饰已启用的类、属性、方法，在未来的某个版本将会启用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Deprecated</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Persion</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="meta">@Deprecated</span></span><br><span class="line">  <span class="keyword">private</span> String name;</span><br><span class="line">  </span><br><span class="line">  <span class="meta">@Deprecated</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">  </span><br><span class="line">  <span class="meta">@Deprecated</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getPerson</span><span class="params">(@Deprecated <span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">    <span class="meta">@Deprecated</span> </span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="SuppressWarnings"><a href="#SuppressWarnings" class="headerlink" title="@SuppressWarnings"></a>@SuppressWarnings</h4><p>​    抑制警告，可给定需要抑制的类型（一个或多个）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getPerson</span><span class="params">(@Deprecated <span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unused"</span>)</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">2</span>;</span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(&#123;<span class="string">"unused"</span>,<span class="string">"null"</span>&#125;)</span><br><span class="line">    <span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">    String warn = <span class="keyword">null</span>;</span><br><span class="line">    System.out.println(warn)</span><br><span class="line"></span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h4><p>​    自定义注解，可以使用在类、属性、构造器、方法、形参和局部变量上。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@interface</span> MyAnn&#123;</span><br><span class="line">  <span class="comment">//默认为全局常量</span></span><br><span class="line">  <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">//注解的属性</span></span><br><span class="line">  <span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> "属性默认值"</span>;</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">time</span><span class="params">()</span> <span class="keyword">default</span> 60</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//参数值写法顺序随意</span></span><br><span class="line"><span class="meta">@MyAnn</span>(name = <span class="string">"自定义注解"</span>,time = <span class="number">60</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h4><p>元注解用于修饰（控制）注解.<code>Target</code>元注解可以约束注解可以在何处使用，<code>Retention</code>元注解表明注解保留到什么时期。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.METHOD)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.SOURCE)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Override &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>参数ElementType可用值：</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> ElementType &#123;</span><br><span class="line">    <span class="comment">/** Class, interface (including annotation type), or enum declaration */</span></span><br><span class="line">    TYPE,</span><br><span class="line">    <span class="comment">//类</span></span><br><span class="line">    <span class="comment">/** Field declaration (includes enum constants) */</span></span><br><span class="line">    FIELD,</span><br><span class="line">    <span class="comment">//属性</span></span><br><span class="line">    <span class="comment">/** Method declaration */</span></span><br><span class="line">    METHOD,</span><br><span class="line">    <span class="comment">//方法</span></span><br><span class="line">    <span class="comment">/** Formal parameter declaration */</span></span><br><span class="line">    PARAMETER,</span><br><span class="line">    <span class="comment">//参数</span></span><br><span class="line">    <span class="comment">/** Constructor declaration */</span></span><br><span class="line">    CONSTRUCTOR,</span><br><span class="line">    <span class="comment">//构造</span></span><br><span class="line">    <span class="comment">/** Local variable declaration */</span></span><br><span class="line">    LOCAL_VARIABLE,</span><br><span class="line">    <span class="comment">//局部变量</span></span><br><span class="line">    <span class="comment">/** Annotation type declaration */</span></span><br><span class="line">    ANNOTATION_TYPE,</span><br><span class="line">    <span class="comment">//注解类型</span></span><br><span class="line">    <span class="comment">/** Package declaration */</span></span><br><span class="line">    PACKAGE,</span><br><span class="line">    <span class="comment">//包</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Type parameter declaration</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 1.8</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    TYPE_PARAMETER,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Use of a type</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 1.8</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    TYPE_USE</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Retention</span>注解参数RetentionPolicy可用值：</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> RetentionPolicy &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Annotations are to be discarded by the compiler.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    SOURCE,</span><br><span class="line">    <span class="comment">//源码</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Annotations are to be recorded in the class file by the compiler</span></span><br><span class="line"><span class="comment">     * but need not be retained by the VM at run time.  This is the default</span></span><br><span class="line"><span class="comment">     * behavior.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    CLASS,</span><br><span class="line">    <span class="comment">//编译生成的类中（默认）</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Annotations are to be recorded in the class file by the compiler and</span></span><br><span class="line"><span class="comment">     * retained by the VM at run time, so they may be read reflectively.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> java.lang.reflect.AnnotatedElement</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    RUNTIME</span><br><span class="line">    <span class="comment">//运行时期</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -486,11 +423,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JS/" rel="tag"># JS</a>
+            <a href="/tags/java基础复习/" rel="tag"># java基础复习</a>
           
-            <a href="/tags/高级/" rel="tag"># 高级</a>
-          
-            <a href="/tags/编程/" rel="tag"># 编程</a>
+            <a href="/tags/枚举注解/" rel="tag"># 枚举注解</a>
           
         </div>
       
@@ -518,8 +453,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/01/node-js/" rel="next" title="node.js">
-                <i class="fa fa-chevron-left"></i> node.js
+              <a href="/2019/04/22/Basic-Customer-Managememt-System/" rel="next" title="Basic Customer Managememt System">
+                <i class="fa fa-chevron-left"></i> Basic Customer Managememt System
               </a>
             
           </div>
@@ -528,8 +463,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/05/Zookeeper/" rel="prev" title="Zookeeper">
-                Zookeeper <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/27/JavaSE-Chapter-7/" rel="prev" title="JavaSE-Chapter-7">
+                JavaSE-Chapter-7 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -692,7 +627,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本数据类型"><span class="nav-number">1.1.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用类型"><span class="nav-number">1.2.</span> <span class="nav-text">引用类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断类型"><span class="nav-number">1.3.</span> <span class="nav-text">判断类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存模型"><span class="nav-number">2.</span> <span class="nav-text">内存模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">3.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">4.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数声明"><span class="nav-number">4.1.</span> <span class="nav-text">函数声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回调函数"><span class="nav-number">4.2.</span> <span class="nav-text">回调函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IIFE"><span class="nav-number">5.</span> <span class="nav-text">IIFE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this指针"><span class="nav-number">6.</span> <span class="nav-text">this指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型"><span class="nav-number">7.</span> <span class="nav-text">原型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#显式原型"><span class="nav-number">7.1.</span> <span class="nav-text">显式原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐式原型"><span class="nav-number">7.2.</span> <span class="nav-text">隐式原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型链"><span class="nav-number">7.3.</span> <span class="nav-text">原型链</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上下文"><span class="nav-number">8.</span> <span class="nav-text">上下文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全局执行"><span class="nav-number">9.</span> <span class="nav-text">全局执行</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#枚举和注解"><span class="nav-number">1.</span> <span class="nav-text">枚举和注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举"><span class="nav-number">1.1.</span> <span class="nav-text">枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法说明"><span class="nav-number">1.1.1.</span> <span class="nav-text">方法说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义成员"><span class="nav-number">1.1.2.</span> <span class="nav-text">定义成员</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注解"><span class="nav-number">1.2.</span> <span class="nav-text">注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用注解"><span class="nav-number">1.2.1.</span> <span class="nav-text">常用注解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Deprecated"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">@Deprecated</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SuppressWarnings"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">@SuppressWarnings</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义注解"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">自定义注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#元注解"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">元注解</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
