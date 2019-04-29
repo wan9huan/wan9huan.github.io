@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JavaSE-Chapter-8]]></title>
+    <url>%2F2019%2F04%2F29%2FJavaSE-Chapter-8%2F</url>
+    <content type="text"><![CDATA[​ Java中常用类介绍、字符串的处理、常用类的使用。 常用类]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>String</tag>
+        <tag>常用类</tag>
+        <tag>字符串处理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JavaSE-Chapter-7]]></title>
     <url>%2F2019%2F04%2F27%2FJavaSE-Chapter-7%2F</url>
-    <content type="text"><![CDATA[​ 异常处理。 异常处理]]></content>
+    <content type="text"><![CDATA[​ 异常处理。 异常处理​ Java的程序执行过程中发生的异常大致分为两类. ​ Error: Java 虚拟机无法解决的严重问题，一般不编写针对性代码处理。 ​ Exception: 编程错误或偶然的外因导致的一般问题，可以使用针对性代码进行处理。 异常 程序在运行中出现的非正常状况 ​ 程序出现异常如不进行处理，程序可能会崩溃。 分类 按程度区分 Error: JVM也无法进行处理的严重错误 Exception: 一般异常 按照处理方式区分 受检异常(checked)：编译时异常，在程序中必须处理 非受检异常(unchecked): 运行时异常，在程序中无法处理 ps. RuntimeException属于Error 异常机制​ 异常是一个对象，产生异常将会逐级向上层调用者抛出，直至异常完成处理 123456所有异常类的父类：java.lang.Throable两个异常类方法： //获取异常信息 public String getMessage(); //栈信息跟踪 public void printStackTrace(); 异常处理捕获​ 使用使用try-catch-finally语句捕获处理异常 12345678try&#123; 可能出现遗产的语句；&#125;catch(异常类型 引用)&#123; 出现异常时执行的语句；&#125;finally&#123; 无论是否发生异常总是会执行的语句；&#125;​ 1234567891011121314151617181920212223示例： public static void main(String[] args)&#123; System.out.println("try-catch 开始~") try&#123; int n = Integer.parseInt(args[0]); &#125;catch(ArrayIndexOutBoundsException e)&#123; //捕获数组越界异常 e.printStackTrace(); &#125;catch(NumberFormatException e)&#123; //捕获数字格式化异常 System.out.println(e.getMessage()); &#125;catch(Exception e)&#123; //捕获所有全部异常 System.out.println("其他异常：" + e); &#125;finally&#123; //释放外部资源的操作 System.out.println("finally 总是会执行的呢！"); &#125; System.out.println("try-catch 结束~")；&#125; ​ 可使用组合 try-catch try-catch-finally try-finally 抛出​ throw语句可用来从方法中主动抛出指定异常对象。可以主动抛出RuntimeException及其子类的异常对象。 ​ 在方法签名中使用throws指明本方法可能抛出的异常，提醒调用者。 ​ throw语句执行后，方法返回携带抛出的异常对象。 123例如： throw 异常对象； throw new RuntimeException("Could not connect")。 123456789101112131415161718192021class DivByZero extend Throwable&#123; public DivByZero(String name)&#123; super(name); &#125; public DivByZero(Throwable cause)&#123; super(cause); &#125;&#125;public class TestThrow&#123; //方法签名使用 throws 列举此方法可能抛出的异常 public void deivide (int a, int b) throws DivByZero &#123; if(b==0) throw new DivByZero("can not / zero"); return a/b; &#125; pubic void more() throws DivByZero，Exception，...&#125; ​ 一些情况下会先捕获异常，然后将该异常包装为自定义异常后抛给调用者。 12345try&#123; result = x/y&#125;catch(ArithmeticEception e)&#123; throw new DividedByZeroException(e);&#125; 异常抛出​ 入口方法或方法出现问题将引起严重的后果时使用捕获。 ​ 非入口，被调用的方法，应抛出异常。]]></content>
       <categories>
         <category>Java</category>
       </categories>

@@ -87,10 +87,13 @@
 <meta property="og:site_name" content="Leon">
 <meta property="og:description" content="​    异常处理。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-27T08:53:44.240Z">
+<meta property="og:image" content="https://wan9huan.github.io/2019/04/27/JavaSE-Chapter-7/异常分类.jpg">
+<meta property="og:image" content="https://wan9huan.github.io/2019/04/27/JavaSE-Chapter-7/异常机制.jpg">
+<meta property="og:updated_time" content="2019-04-29T01:09:27.001Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaSE-Chapter-7">
 <meta name="twitter:description" content="​    异常处理。">
+<meta name="twitter:image" content="https://wan9huan.github.io/2019/04/27/JavaSE-Chapter-7/异常分类.jpg">
 
 
 
@@ -388,7 +391,49 @@
       
         <p>​    异常处理。</p>
 <a id="more"></a>
-<h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1>
+<h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><p>​    Java的程序执行过程中发生的异常大致分为两类.</p>
+<p>​    <code>Error</code>: Java 虚拟机无法解决的严重问题，一般不编写针对性代码处理。</p>
+<p>​    <code>Exception</code>: 编程错误或偶然的外因导致的一般问题，可以使用针对性代码进行处理。</p>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><blockquote>
+<p>程序在运行中出现的非正常状况</p>
+</blockquote>
+<p>​    程序出现异常如不进行处理，程序可能会崩溃。</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+<li>按程度区分<ol>
+<li>Error:  JVM也无法进行处理的严重错误</li>
+<li>Exception: 一般异常</li>
+</ol>
+</li>
+<li>按照处理方式区分<ul>
+<li>受检异常(checked)：编译时异常，在程序中必须处理</li>
+<li>非受检异常(unchecked): 运行时异常，在程序中无法处理</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2019/04/27/JavaSE-Chapter-7/异常分类.jpg" alt="异常分类"></p>
+<p>   <code>ps. RuntimeException属于Error</code></p>
+<h3 id="异常机制"><a href="#异常机制" class="headerlink" title="异常机制"></a>异常机制</h3><p>​    异常是一个对象，产生异常将会逐级向上层调用者抛出，直至异常完成处理</p>
+<p><img src="/2019/04/27/JavaSE-Chapter-7/异常机制.jpg" alt="异常处理机制"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">所有异常类的父类：java.lang.Throable</span><br><span class="line">两个异常类方法：</span><br><span class="line">  <span class="comment">//获取异常信息</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="comment">//栈信息跟踪</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printStackTrace</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="异常处理-1"><a href="#异常处理-1" class="headerlink" title="异常处理"></a>异常处理</h3><h4 id="捕获"><a href="#捕获" class="headerlink" title="捕获"></a>捕获</h4><p>​    使用<code>使用try-catch-finally</code>语句捕获处理异常</p>
+<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">  可能出现遗产的语句；</span><br><span class="line">&#125;<span class="keyword">catch</span>(异常类型 引用)&#123;</span><br><span class="line">  出现异常时执行的语句；</span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">  无论是否发生异常总是会执行的语句；</span><br><span class="line">&#125;</span><br><span class="line">​</span><br></pre></td></tr></table></figure>
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">示例：</span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">   System.out.println(<span class="string">"try-catch 开始~"</span>)</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">try</span>&#123;</span><br><span class="line"> 		  <span class="keyword">int</span> n = Integer.parseInt(args[<span class="number">0</span>]);</span><br><span class="line">      &#125;<span class="keyword">catch</span>(ArrayIndexOutBoundsException e)&#123;</span><br><span class="line">        <span class="comment">//捕获数组越界异常</span></span><br><span class="line">        e.printStackTrace();</span><br><span class="line">      &#125;<span class="keyword">catch</span>(NumberFormatException e)&#123;</span><br><span class="line">        <span class="comment">//捕获数字格式化异常</span></span><br><span class="line">        System.out.println(e.getMessage());</span><br><span class="line">      &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">        <span class="comment">//捕获所有全部异常</span></span><br><span class="line">        System.out.println(<span class="string">"其他异常："</span> + e);  </span><br><span class="line">      &#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">        <span class="comment">//释放外部资源的操作</span></span><br><span class="line">        System.out.println(<span class="string">"finally 总是会执行的呢！"</span>);  </span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">  System.out.println(<span class="string">"try-catch 结束~"</span>)；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    可使用组合</p>
+<ul>
+<li>try-catch</li>
+<li>try-catch-finally</li>
+<li>try-finally</li>
+</ul>
+<h3 id="抛出"><a href="#抛出" class="headerlink" title="抛出"></a>抛出</h3><p>​    <code>throw</code>语句可用来从方法中主动抛出指定异常对象。可以主动抛出<code>RuntimeException</code>及其<code>子类的异常</code>对象。</p>
+<p>​    在方法签名中使用<code>throws</code>指明本方法可能抛出的异常，提醒调用者。</p>
+<p>​    <code>throw</code>语句执行后，方法返回携带抛出的异常对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">例如：</span><br><span class="line">   <span class="keyword">throw</span> 异常对象；</span><br><span class="line">   <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Could not connect"</span>)。</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DivByZero</span> <span class="title">extend</span> <span class="title">Throwable</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">DivByZero</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(name);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">DivByZero</span><span class="params">(Throwable cause)</span></span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(cause);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestThrow</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//方法签名使用 throws 列举此方法可能抛出的异常</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deivide</span>  <span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> <span class="keyword">throws</span> DivByZero </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>) <span class="keyword">throw</span> <span class="keyword">new</span> DivByZero(<span class="string">"can not / zero"</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> a/b;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function">pubic <span class="keyword">void</span> <span class="title">more</span><span class="params">()</span> <span class="keyword">throws</span> DivByZero，Exception，...</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>​    一些情况下会先捕获异常，然后将该异常包装为自定义异常后抛给调用者。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">  result = x/y</span><br><span class="line">&#125;<span class="keyword">catch</span>(ArithmeticEception e)&#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> DividedByZeroException(e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="异常抛出"><a href="#异常抛出" class="headerlink" title="异常抛出"></a>异常抛出</h3><p>​    入口方法或方法出现问题将引起严重的后果时使用捕获。</p>
+<p>​    非入口，被调用的方法，应抛出异常。</p>
+
       
     </div>
     
@@ -444,6 +489,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/29/JavaSE-Chapter-8/" rel="prev" title="JavaSE-Chapter-8">
+                JavaSE-Chapter-8 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -527,7 +576,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -549,7 +598,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -605,7 +654,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#异常处理"><span class="nav-number">1.</span> <span class="nav-text">异常处理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#异常处理"><span class="nav-number">1.</span> <span class="nav-text">异常处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#异常"><span class="nav-number">1.1.</span> <span class="nav-text">异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分类"><span class="nav-number">1.1.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常机制"><span class="nav-number">1.1.2.</span> <span class="nav-text">异常机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常处理-1"><span class="nav-number">1.1.3.</span> <span class="nav-text">异常处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#捕获"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">捕获</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抛出"><span class="nav-number">1.1.4.</span> <span class="nav-text">抛出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常抛出"><span class="nav-number">1.1.5.</span> <span class="nav-text">异常抛出</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
